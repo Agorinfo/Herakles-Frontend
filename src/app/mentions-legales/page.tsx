@@ -12,19 +12,19 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
     return {
         metadataBase: new URL(FRONT_URL! + "/mentions-legales"),
-        title: metas.meta_title || "We Négoce, éditeur de solution logicielles métier",
-        description: metas?.meta_description || "Solutions logicielles de gestion : We Négoce",
+        title: metas.meta_title || "Herakles, éditeur de solution logicielles métier",
+        description: metas?.meta_description || "Solutions logicielles de gestion : Herakles",
         openGraph: {
-            title: metas?.meta_title || "We Négoce, éditeur de solution logicielles métier",
-            siteName: metas?.meta_title || "We Négoce, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : We Négoce",
+            title: metas?.meta_title || "Herakles, éditeur de solution logicielles métier",
+            siteName: metas?.meta_title || "Herakles, éditeur de solution logicielles métier",
+            description: metas?.meta_description || "Solutions logicielles de gestion : Herakles",
             url: FRONT_URL! + "/mentions-legales",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
         twitter: {
             card: 'summary_large_image',
             site: FRONT_URL! + "/mentions-legales",
-            title: metas?.meta_title || "We Négoce, éditeur de solution logicielles métier",
+            title: metas?.meta_title || "Herakles, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : We Négoce",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
