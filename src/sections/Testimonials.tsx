@@ -17,7 +17,7 @@ const Testimonials = () => {
 
     return (
         <section>
-           <TestimonialSlide testimonials={data.testimonials}/>
+            {data.testimonials && <TestimonialSlide testimonials={data.testimonials}/>}
         </section>
     );
 };

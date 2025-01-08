@@ -64,7 +64,7 @@ const TestimonialSlide = ({testimonials}: TestimonialFetchType) => {
             {loaded && instanceRef.current && (
                 <div className="flex justify-center items-center gap-1">
                     {[
-                        ...Array(instanceRef.current.track.details.slides.length).keys(),
+                        ...Array(instanceRef.current.track.details?.slides.length).keys(),
                     ].map((idx) => {
                         return (
                             <button
