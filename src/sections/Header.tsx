@@ -24,7 +24,8 @@ const Header = () => {
         queryFn: getGlobal
     })
 
-    const logo = global.data?.logo?.data?.url
+    const logo = global.data?.logo?.data?.attributes.url
+    console.log(logo);
     if(isLoading) return  <Loader />
 
     if(error) return <p>{error.message}</p>
