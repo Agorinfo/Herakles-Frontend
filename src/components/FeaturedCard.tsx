@@ -18,14 +18,16 @@ const FeaturedCard = ({icon, title, text, colors, iconClassName, className, link
                         className={iconClassName}
                     />
                     :
-                    <Link href={link}>
-                        <IconCard
-                            colors={colors}
-                            icon={icon}
-                            size="medium"
-                            className={iconClassName}
-                        />
-                    </Link>
+                    <>
+                        {link && <Link href={link}>
+                            <IconCard
+                                colors={colors}
+                                icon={icon}
+                                size="medium"
+                                className={iconClassName}
+                            />
+                        </Link>}
+                    </>
                 }
             </div>
             <div>

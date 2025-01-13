@@ -1,9 +1,9 @@
 "use client"
 import React from 'react';
-import {BlocksRenderer,type BlocksContent} from "@strapi/blocks-react-renderer";
+import {BlocksRenderer, type BlocksContent} from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 
-const RichText = ({content}: {content: BlocksContent}) => {
+const RichText = ({content}: { content: BlocksContent }) => {
     return (
         <BlocksRenderer
             content={content}
@@ -18,14 +18,18 @@ const RichText = ({content}: {content: BlocksContent}) => {
                     </li>
                 ),
                 link: ({children, url}) => (
-                    <Link href={url} className="text-featured-peps font-semibold hover:text-gray-500 transition-colors duration-300 ease-linear">{children}</Link>
+                    <>
+                        {url && <Link href={url}
+                                      className="text-featured-peps font-semibold hover:text-gray-500 transition-colors duration-300 ease-linear">{children}</Link>
+                        }
+                    </>
                 ),
                 paragraph: ({children}) =>
                     <p className="mb-4 text-gray-500 lg:w-4/5 ">{children}</p>,
                 heading: ({children, level}) => {
                     switch (level) {
                         case 1:
-                            return(
+                            return (
                                 <h1
                                     className={"mb-8 font-bold text-h1 leading-normal"}>{children}
                                 </h1>
