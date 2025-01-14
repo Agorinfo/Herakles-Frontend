@@ -106,7 +106,7 @@ const Slider = ({images, logo}: ImagesTypes) => {
                                     exit={{opacity: 0}}
                                     transition={{duration: 0.7}}
                                     className="w-full h-full object-cover"
-                                    src={images ? images[index].attributes.formats ? backUrl + images[index].attributes.formats.small.url : backUrl + images[index].attributes.url : emptyImg.src}
+                                    src={images ? images[index].attributes.formats.small ? backUrl + images[index].attributes.formats.small.url : backUrl + images[index].attributes.url : emptyImg.src}
                                     alt={images ? images[index].attributes.alternativeText : ""}/>
                             </div>
                             <span
