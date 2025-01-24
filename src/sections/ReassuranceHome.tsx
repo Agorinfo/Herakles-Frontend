@@ -17,11 +17,11 @@ const ReassuranceHome = () => {
     const backUrl = process.env.NEXT_PUBLIC_BACK_URL;
     const {data, error, isLoading} = useQuery({
         queryKey: ["home"],
-        queryFn: getHome,
+        queryFn: () => getHome(),
     });
     const global = useQuery({
         queryKey: ["global"],
-        queryFn: getGlobal,
+        queryFn: () => getGlobal(),
     });
 
     if (isLoading) return <Loader/>

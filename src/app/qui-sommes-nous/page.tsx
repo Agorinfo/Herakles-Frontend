@@ -49,7 +49,7 @@ const About = async () => {
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
         queryKey: ["about"],
-        queryFn: getAbout,
+        queryFn: () => getAbout(),
     })
     // await queryClient.prefetchQuery({
     //     queryKey: ["home"],

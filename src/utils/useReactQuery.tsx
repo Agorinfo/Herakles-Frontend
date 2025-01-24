@@ -32,10 +32,9 @@ function getQueryClient() {
 }
 
 const UseReactQuery = ({children}: { children: React.ReactNode; }) => {
-    const queryCLient = getQueryClient()
     const [queryClient] = useState(() => new QueryClient());
     return (
-        <QueryClientProvider client={queryCLient}>
+        <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={false} />
                 {children}
         </QueryClientProvider>

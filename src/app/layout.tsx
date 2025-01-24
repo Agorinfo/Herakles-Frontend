@@ -23,16 +23,17 @@ export default async function RootLayout({
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
         queryKey: ["global"],
-        queryFn: getGlobal,
-    })
+        queryFn: async () => JSON.parse(JSON.stringify(await getGlobal())),
+    });
     await queryClient.prefetchQuery({
         queryKey: ["menu"],
-        queryFn: getMenu,
-    })
+        queryFn: async () => JSON.parse(JSON.stringify(await getMenu())),
+    });
     await queryClient.prefetchQuery({
         queryKey: ["footer"],
-        queryFn: getFooter,
-    })
+        queryFn: async () => JSON.parse(JSON.stringify(await getFooter())),
+    });
+
     return (
         <html lang="fr" className="scroll-smooth">
         <body className={`${openSans.className} overflow-x-hidden`}>

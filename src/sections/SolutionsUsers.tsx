@@ -18,7 +18,7 @@ type ListCardType = {
 const SolutionsUsers = () => {
     const {data, error, isLoading} = useQuery({
         queryKey: ["home"],
-        queryFn: getHome,
+        queryFn: () => getHome(),
     });
 
     if (isLoading) return <Loader/>

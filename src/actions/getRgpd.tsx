@@ -13,5 +13,6 @@ export default async function getRgpd() {
         throw new Error('Failed to fetch data')
     }
 
-    return res.json().then(res => res.data.attributes);
+    const data = await res.json();
+    return JSON.parse(JSON.stringify(data.data.attributes));
 }
