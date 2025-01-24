@@ -60,11 +60,11 @@ const Footer = ({}) => {
                 ))}
             </div>
             <div className="border-b pt-14 text-sm flex items-baseline gap-1">
-                WeNégoce est un éditeur de <a href="https://www.wesoft.fr/" target="_blank" rel="noreferrer"><img
+                eDILOGIC est un éditeur de <a href="https://www.wesoft.fr/" target="_blank" rel="noreferrer"><img
                 src="/logotype-wesoft.png" alt="Société We Soft"/></a>
             </div>
             <div className="text-center text-sm text-grayscale-darker py-8 ">
-                © {currenYear === 2024 ? currenYear : "2024-" + new Date().getFullYear()} - WENEGOCE. Tous droits
+                © {currenYear === 2025 ? currenYear : "2025-" + new Date().getFullYear()} - EDILOGIC. Tous droits
                 réservés.
             </div>
         </footer>
