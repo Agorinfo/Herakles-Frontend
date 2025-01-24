@@ -48,12 +48,12 @@ const ContactForm = () => {
 
     const {data, isLoading, error} = useQuery({
         queryKey: ["global"],
-        queryFn: getGlobal
+        queryFn: () => getGlobal(),
     })
 
     const footerData = useQuery({
         queryKey: ["footer"],
-        queryFn: getFooter,
+        queryFn: () => getFooter(),
     });
 
     const {siteName, street, adressComp, zipCode, city, tel, email, addressComp, portalUrl, logo} = data;
