@@ -132,8 +132,7 @@ const ContactForm = () => {
             </div>
             <div className={`p-8 lg:w-[50vw] max-w-[48rem] ${active === "formulaire" ? "block" : "hidden lg:block"}`}>
                 <h2 className="text-h3 font-bold capitalize pb-6 hidden lg:block">Contacter <span
-                    className="text-[#3965bd] font-bold">We</span><span
-                    className='font-light text-[#646464]'>Négoce</span></h2>
+                    className="text-[#3965bd] font-bold">Édilogic</span></h2>
                 <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4">
                     <label className="label-style" htmlFor="firstname">
                         Prénom *
