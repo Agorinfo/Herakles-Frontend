@@ -54,13 +54,13 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                 >
                     {!active &&
                         <>
-                            <img
-                                className="absolute inset-0 mix-blend-multiply w-full h-full backdrop-brightness-75"
-                                src="/agorinfo-filigrane-min.png"
-                                srcSet="/agorinfo-filigrane-min.png 200w, /agorinfo-filigrane-max.png 400w"
-                                sizes="(max-width: 600px) 200px, 50vw"
-                                alt=""
-                            />
+                            {/*<img*/}
+                            {/*    className="absolute inset-0 mix-blend-multiply w-full h-full backdrop-brightness-75"*/}
+                            {/*    src="/agorinfo-filigrane-min.png"*/}
+                            {/*    srcSet="/agorinfo-filigrane-min.png 200w, /agorinfo-filigrane-max.png 400w"*/}
+                            {/*    sizes="(max-width: 600px) 200px, 50vw"*/}
+                            {/*    alt=""*/}
+                            {/*/>*/}
                             <div className="relative z-10">
                                 <p className="text-h5 font-bold">{teaser}</p>
                                 <Content btn1ClassName="btn btn-accent" content={text} headingStyle={{color: "#B2DFFF"}}

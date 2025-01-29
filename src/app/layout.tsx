@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import { Open_Sans} from "next/font/google";
+import {Open_Sans} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import getGlobal from "@/actions/getGlobal";
@@ -12,6 +12,7 @@ import getFooter from "@/actions/getFooter";
 import {Toaster} from "react-hot-toast";
 import Modal from "@/components/Modal";
 import CookieConsent from "@/components/CookieConsent";
+import Maintenance from "@/components/Maintenance";
 
 const openSans = Open_Sans({subsets: ["latin"]});
 
@@ -21,6 +22,8 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
     const queryClient = new QueryClient()
+    const global = await getGlobal();
+
     await queryClient.prefetchQuery({
         queryKey: ["global"],
         queryFn: async () => JSON.parse(JSON.stringify(await getGlobal())),
@@ -34,10 +37,20 @@ export default async function RootLayout({
         queryFn: async () => JSON.parse(JSON.stringify(await getFooter())),
     });
 
+    if (process.env.MAINTENANCE === "true") {
+        return (
+            <html lang="fr" className="scroll-smooth">
+            <body className={`${openSans.className} overflow-x-hidden`}>
+            <Maintenance/>
+            </body>
+            </html>
+        );
+    }
+
     return (
         <html lang="fr" className="scroll-smooth">
         <body className={`${openSans.className} overflow-x-hidden`}>
-        <CookieConsent />
+        <CookieConsent/>
         <UseReactQuery>
             <HydrationBoundary state={dehydrate(queryClient)}>
                 <div id="modal-root"></div>

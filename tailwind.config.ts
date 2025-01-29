@@ -140,6 +140,9 @@ const config: Config = {
                 ".btn-accent": {
                     "@apply bg-accent text-white hover:bg-accent-peps outline-none ring-accent-muted focus-visible:ring active:bg-accent-shadow": {},
                 },
+                ".btn-featured": {
+                    "@apply bg-featured text-white hover:bg-featured-peps outline-none ring-featured-muted focus-visible:ring active:bg-featured-shadow": {},
+                },
                 ".btn-white": {
                     "@apply bg-white text-featured hover:bg-featured-shine": {},
                 },
