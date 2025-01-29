@@ -12,20 +12,20 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
     return {
         metadataBase: new URL(FRONT_URL! + "/politique-de-confidentialite"),
-        title: metas.meta_title || "Wenegoce, éditeur de solution logicielles métier",
-        description: metas?.meta_description || "Solutions logicielles de gestion : Wenegoce",
+        title: metas.meta_title || "Edilogic, éditeur de solution logicielles métier",
+        description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
         openGraph: {
-            title: metas?.meta_title || "Wenegoce, éditeur de solution logicielles métier",
-            siteName: metas?.meta_title || "Wenegoce, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Wenegoce",
+            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
+            siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
+            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             url: metas.canonicalUrl,
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
         twitter: {
             card: 'summary_large_image',
             site: metas.canonicalUrl,
-            title: metas?.meta_title || "Wenegoce, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Wenegoce",
+            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
+            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
         icons: {
