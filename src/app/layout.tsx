@@ -37,7 +37,7 @@ export default async function RootLayout({
         queryFn: async () => JSON.parse(JSON.stringify(await getFooter())),
     });
 
-    if (process.env.MAINTENANCE === "true") {
+    if (global.maintenance === true && process.env.NODE_ENV === "production") {
         return (
             <html lang="fr" className="scroll-smooth">
             <body className={`${openSans.className} overflow-x-hidden`}>
