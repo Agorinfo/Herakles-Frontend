@@ -12,6 +12,10 @@ import getGlobal from "@/actions/getGlobal";
 import getSolution from "@/actions/getSolution";
 import emptyImg from "@/assets/empty-img.png"
 
+type Props = {
+    params: { slug: string };
+};
+
 async function getData(slug: string) {
     const {API_URL, API_KEY} = process.env
     const res = await fetch(`${API_URL}/solutions?populate=brandImg,%20heroArchive.logo,%20heroArchive.informationCard.image,%20heroArchive.background,heroArchive.moduleList,%20reassurance.card,%20HeroPage.images,%20HeroPage.logo,%20HeroPage.content,%20cta,%20FeaturesReleased.details,%20featuresReleasedImg,%20newsletter,features,modules.features.activities,modules.features.details,%20modules.features.activities,%20solutionComp&filters%5Bslug%5D%5B%24eq%5D=${slug}`, {
@@ -28,26 +32,27 @@ async function getData(slug: string) {
     return res.json().then(res => res.data);
 }
 
-export const generateMetadata = async ({params}: { params: { slug: string } }): Promise<Metadata> => {
+export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+    const {slug} = params;
     const {BACK_URL, FRONT_URL} = process.env;
-    const solution = await getSolution(params.slug)
+    const solution = await getSolution(slug)
     const global = await getGlobal();
     const metas = solution[0].attributes.metas
 
     return {
-        metadataBase: new URL(FRONT_URL + "/" + params.slug),
+        metadataBase: new URL(FRONT_URL + "/" + slug),
         title: metas.meta_title || "Edilogic, éditeur de solution logicielles métier",
         description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
         openGraph: {
             title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/" + params.slug,
+            url: FRONT_URL + "/" + slug,
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
         twitter: {
             card: 'summary_large_image',
-            site: FRONT_URL + "/" + params.slug,
+            site: FRONT_URL + "/" + slug,
             title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
@@ -60,8 +65,9 @@ export const generateMetadata = async ({params}: { params: { slug: string } }): 
     }
 };
 
-const Solution = async ({params}: { params: { slug: string } }) => {
-    const data = await getData(params.slug);
+const Solution = async ({params}: Props) => {
+    const {slug} = params;
+    const data = await getData(slug);
     const colors = createColorPalette(data[0].attributes.brandColor);
 
     return (

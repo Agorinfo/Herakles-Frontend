@@ -7,42 +7,31 @@ import getService from "@/actions/getService";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 
-// async function getData(slug:string) {
-//     const {API_URL, API_KEY} = process.env
-//     const res = await fetch(`${API_URL}/services?populate=brandImg,%20heroArchive.logo,%20heroArchive.informationCard.image,%20heroArchive.informationCard,heroArchive.moduleList,%20reassurance.card,%20hero.images,%20hero.logo,%20step,%20stepImg,%20cta.image,%20testimonial.logo,%20testimonial.avatar,%20solutionComp&filters%5Bslug%5D%5B%24eq%5D=${slug}`,{
-//         cache: "no-store",
-//         headers: {
-//             Authorization: `Bearer ${API_KEY}`
-//         }
-//     });
-//
-//     if(!res.ok) {
-//         return notFound()
-//     }
-//
-//     return res.json().then(res => res.data);
-// }
+type Props = {
+    params: { slug: string };
+};
 
-export const generateMetadata = async ({params}: {params : {slug: string}}): Promise<Metadata> => {
+export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+    const {slug} = params;
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
-    const service = await getService(params.slug);
+    const service = await getService(slug);
     const metas = service[0].attributes.metas
 
     return {
-        metadataBase: new URL(FRONT_URL + "/" + params.slug),
+        metadataBase: new URL(FRONT_URL + "/" + slug),
         title: metas.meta_title || "Edilogic, éditeur de solution logicielles métier",
         description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
         openGraph: {
             title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/" + params.slug,
+            url: FRONT_URL + "/" + slug,
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
         twitter: {
             card: 'summary_large_image',
-            site: FRONT_URL + "/" + params.slug,
+            site: FRONT_URL + "/" + slug,
             title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
@@ -55,8 +44,9 @@ export const generateMetadata = async ({params}: {params : {slug: string}}): Pro
     }
 };
 
-const Service = async ({params}: {params : {slug: string}}) => {
-    const data = await getService(params.slug);
+const Service = async ({params}: Props) => {
+    const {slug} = params;
+    const data = await getService(slug);
 
     if(!data) return <Loader />;
 

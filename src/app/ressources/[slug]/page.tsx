@@ -11,26 +11,27 @@ type Props = {
 };
 
 
-export const generateMetadata = async ({params}: Props, parent?: ResolvingMetadata) : Promise<Metadata> => {
+export const generateMetadata = async ({params}: Props) : Promise<Metadata> => {
+    const {slug} = params;
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
-    const ressource = await getRessource(params.slug);
+    const ressource = await getRessource(slug);
     const metas = ressource[0]?.attributes.metas
 
     return {
-        metadataBase: new URL(FRONT_URL + "/" + params.slug),
+        metadataBase: new URL(FRONT_URL + "/" + slug),
         title: metas?.meta_title || ressource[0]?.attributes.title,
         description: metas?.meta_description || ressource[0]?.attributes.shortDescription,
         openGraph: {
             title: metas?.meta_title || ressource[0]?.attributes.title,
             siteName: metas?.meta_title || global?.siteName,
             description: metas?.meta_description || ressource[0]?.attributes.shortDescription,
-            url: FRONT_URL + "/ressources/" + params.slug,
+            url: FRONT_URL + "/ressources/" + slug,
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || BACK_URL + ressource[0]?.attributes.featuredImage?.data?.attributes?.formats?.thumbnail?.url || ""],
         },
         twitter: {
             card: 'summary_large_image',
-            site: FRONT_URL + "/" + params.slug,
+            site: FRONT_URL + "/" + slug,
             title: metas?.meta_title || ressource[0]?.attributes.title,
             description: metas?.meta_description || ressource[0]?.attributes.shortDescription,
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || BACK_URL + ressource[0]?.attributes.featuredImage?.data?.attributes?.formats?.thumbnail?.url  || ""],
@@ -45,10 +46,11 @@ export const generateMetadata = async ({params}: Props, parent?: ResolvingMetada
 
 
 const Ressource = async ({params}: Props) => {
+    const {slug} = params;
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
-        queryKey: ["ressource", params.slug],
-        queryFn: () => getRessource(params.slug),
+        queryKey: ["ressource", slug],
+        queryFn: () => getRessource(slug),
     })
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
