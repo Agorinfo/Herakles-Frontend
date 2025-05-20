@@ -7,12 +7,12 @@ import HeroRessource from "@/components/HeroRessource";
 import RessourceContent from "@/components/RessourceContent";
 
 type Props = {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 };
 
 
 export const generateMetadata = async ({params}: Props) : Promise<Metadata> => {
-    const {slug} = params;
+    const {slug} = await params;
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
     const ressource = await getRessource(slug);
@@ -46,7 +46,7 @@ export const generateMetadata = async ({params}: Props) : Promise<Metadata> => {
 
 
 const Ressource = async ({params}: Props) => {
-    const {slug} = params;
+    const {slug} = await params;
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
         queryKey: ["ressource", slug],

@@ -13,7 +13,7 @@ import getSolution from "@/actions/getSolution";
 import emptyImg from "@/assets/empty-img.png"
 
 type Props = {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 };
 
 async function getData(slug: string) {
@@ -33,7 +33,7 @@ async function getData(slug: string) {
 }
 
 export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
-    const {slug} = params;
+    const {slug} = await params;
     const {BACK_URL, FRONT_URL} = process.env;
     const solution = await getSolution(slug)
     const global = await getGlobal();
@@ -66,7 +66,7 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
 };
 
 const Solution = async ({params}: Props) => {
-    const {slug} = params;
+    const {slug} = await params;
     const data = await getData(slug);
     const colors = createColorPalette(data[0].attributes.brandColor);
 

@@ -8,11 +8,11 @@ import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 
 type Props = {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 };
 
 export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
-    const {slug} = params;
+    const {slug} = await params;
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
     const service = await getService(slug);
@@ -45,7 +45,7 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
 };
 
 const Service = async ({params}: Props) => {
-    const {slug} = params;
+    const {slug} = await params;
     const data = await getService(slug);
 
     if(!data) return <Loader />;
