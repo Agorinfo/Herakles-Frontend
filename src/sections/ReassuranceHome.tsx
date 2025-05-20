@@ -1,14 +1,8 @@
 "use client"
 import React from 'react';
-import Button from "@/components/Button";
-import {ReassuranceType} from "@/utils/types";
-import {SliderLandscape} from "@/components/Slider";
-import CallToAction from "@/components/CallToAction";
 import {useQuery} from "@tanstack/react-query";
 import getHome from "@/actions/getHome";
 import Loader from "@/components/Loader";
-import {BlocksRenderer} from "@strapi/blocks-react-renderer";
-import Content from "@/components/Content";
 import getGlobal from "@/actions/getGlobal";
 import Reassurance from "@/components/Reassurance";
 import emptyImg from "@/assets/empty-img.png"
@@ -24,6 +18,7 @@ const ReassuranceHome = () => {
         queryFn: () => getGlobal(),
     });
 
+    const {text, label, url, images, callToAction} = data.reassurance;
     if (isLoading) return <Loader/>
 
     if (error) return <p>{error.message}</p>
@@ -31,13 +26,13 @@ const ReassuranceHome = () => {
         <Reassurance
             icon={global.data.favicon.data ? global.data.favicon.data.attributes.url : emptyImg.src}
             alt={global.data.favicon.data ? global.data.favicon.data.attributes.alternativeText : ""}
-            text={data?.reassurance.text}
-            images={data?.reassurance.images}
-            label={data?.reassurance.label}
-            url={data?.reassurance.url}
-            ctaTitle={data?.reassurance.callToAction.title}
-            ctaText={data?.reassurance.callToAction.text}
-            ctaButtonLabel={data?.reassurance.callToAction.labelButton}
+            text={text}
+            images={images}
+            label={label}
+            url={url}
+            ctaTitle={callToAction.title}
+            ctaText={callToAction.text}
+            ctaButtonLabel={callToAction.labelButton}
             ctaHeadingClassName="text-accent"
             ctaButtonClassName="btn-accent"
         />

@@ -24,8 +24,8 @@ const Footer = ({}) => {
             <div className="grid grid-cols-2 gap-8 md:gap-0 md:grid-cols-6 border-t pt-12">
                 <div className="col-span-2">
                     <div className="pb-4 w-[180px]">
-                        <img className="w-full" src={data.logo.data ? backUrl + data.logo?.data?.attributes.url : emptyImg.src}
-                             alt={data.logo.data ? data.logo?.data?.attributes.alternativeText : ""}/>
+                        <img className="w-full" src={data.logo.data ? backUrl + data.logo.data.attributes.url : emptyImg.src}
+                             alt={data.logo.data ? data.logo.data.attributes.alternativeText : ""}/>
                     </div>
                     <p className="pr-8 pb-8">{data.text}</p>
                     <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ const Footer = ({}) => {
                         ))}
                     </div>
                 </div>
-                {data?.footerLinks?.map((item: any) => (
+                {data.footerLinks.map((item: any) => (
                     <div key={item.id} className="flex flex-col gap-4">
                         <h4 className="uppercase paragraph text-featured font-bold">{item.title}</h4>
                         {item.listItem.map((item: any) => (
@@ -60,11 +60,11 @@ const Footer = ({}) => {
                 ))}
             </div>
             <div className="border-b pt-14 text-sm flex items-baseline gap-1">
-                Edilogic est un éditeur de <a href="https://www.wesoft.fr/" target="_blank" rel="noreferrer"><img
+                WeNégoce est un editeur de <a href="https://www.wesoft.fr/" target="_blank" rel="noreferrer"><img
                 src="/logotype-wesoft.png" alt="Société We Soft"/></a>
             </div>
             <div className="text-center text-sm text-grayscale-darker py-8 ">
-                © {currenYear === 2025 ? currenYear : "2025-" + new Date().getFullYear()} - EDILOGIC. Tous droits
+                © {currenYear === 2024 ? currenYear : "2024-" + new Date().getFullYear()} - WENEGOCE. Tous droits
                 réservés.
             </div>
         </footer>

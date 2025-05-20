@@ -1,4 +1,3 @@
-import type {Metadata} from "next";
 import {Open_Sans} from "next/font/google";
 import "./globals.css";
 import React from "react";
@@ -48,8 +47,8 @@ export default async function RootLayout({
     }
 
     return (
-        <html lang="fr" className="scroll-smooth">
-        <body className={`${openSans.className} overflow-x-hidden`}>
+        <html lang="fr" className="scroll-smooth overflow-x-clip">
+        <body className={`${openSans.className} overflow-x-clip`}>
         <CookieConsent/>
         <UseReactQuery>
             <HydrationBoundary state={dehydrate(queryClient)}>

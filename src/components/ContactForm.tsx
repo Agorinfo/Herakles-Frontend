@@ -48,7 +48,7 @@ const ContactForm = () => {
 
     const {data, isLoading, error} = useQuery({
         queryKey: ["global"],
-        queryFn: () => getGlobal(),
+        queryFn: () => getGlobal()
     })
 
     const footerData = useQuery({
@@ -59,7 +59,7 @@ const ContactForm = () => {
     const {siteName, street, adressComp, zipCode, city, tel, email, addressComp, portalUrl, logo} = data;
 
     const telUrl= tel.replaceAll(" ", "").substring(1);
-    const telCompUrl = addressComp?.tel?.replaceAll(" ", "").substring(1);
+    const telCompUrl = addressComp?.tel.replaceAll(" ", "").substring(1);
 
     if(isLoading || footerData.isLoading) return <Loader />
 
@@ -67,7 +67,7 @@ const ContactForm = () => {
 
     return (
         <div className="flex flex-col lg:flex-row bg-white">
-            <h2 className="text-h3 font-bold capitalize pt-8 px-8 pb-6 lg:hidden">Contacter <span className="text-[#3965bd] font-bold">Édilogic</span></h2>
+            <h2 className="text-h3 font-bold capitalize pt-8 px-8 pb-6 lg:hidden">Contacter <span className="text-[#3965bd] font-bold">We</span><span className='font-light text-[#646464]'>Négoce</span></h2>
             <div className="lg:hidden px-8 flex">
                 <div className="flex justify-start items-start gap-1 rounded-lg border overflow-hidden">
                     <button
@@ -88,8 +88,8 @@ const ContactForm = () => {
                 className={`p-8 flex flex-col justify-between items-start lg:border-r lg:border-grayscale-lighter lg:w-[33.333vw] max-w-[32rem] lg:block ${active === "coordonnees" ? "block" : "hidden lg:block"}`}>
                 <div className="">
                     <div className="pb-6 hidden lg:block w-[17.5rem]">
-                        <img className="w-full" src={logo.data ? backUrl + logo.data?.attributes.url : emptyImg.src}
-                             alt={logo?.data?.attributes.alternativeText}/>
+                        <img className="w-full" src={logo.data ? backUrl + logo.data.attributes.url : emptyImg.src}
+                             alt={logo.data.attributes.alternativeText}/>
                     </div>
                     <div className="divide-y">
                         <div className="flex flex-col gap-2 pb-6">
@@ -119,7 +119,7 @@ const ContactForm = () => {
                     {portalUrl && <Button label="Créer un ticket" url={portalUrl} className="btn btn-gray"/>}
                 </div>
                 <div className="flex items-center gap-2">
-                    {footerData?.data?.socials?.map((item: any) => (
+                    {footerData.data.socials.map((item: any) => (
                         <Button
                             ariaLabel={"lien vers " + item.social}
                             key={item.id}
@@ -132,7 +132,8 @@ const ContactForm = () => {
             </div>
             <div className={`p-8 lg:w-[50vw] max-w-[48rem] ${active === "formulaire" ? "block" : "hidden lg:block"}`}>
                 <h2 className="text-h3 font-bold capitalize pb-6 hidden lg:block">Contacter <span
-                    className="text-[#3965bd] font-bold">Édilogic</span></h2>
+                    className="text-[#3965bd] font-bold">We</span><span
+                    className='font-light text-[#646464]'>Négoce</span></h2>
                 <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 gap-4">
                     <label className="label-style" htmlFor="firstname">
                         Prénom *

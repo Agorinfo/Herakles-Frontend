@@ -1,33 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {NavItemsType} from "@/utils/types";
-import Button, {ModalButton} from "@/components/Button";
+import {ModalButton} from "@/components/Button";
 import Icon from "@/components/icons/Icon";
 import NavCard from "@/components/NavCard";
 import Link from "next/link";
-import emptyImg from "@/assets/empty-img.png"
+import emptyImg from "@/assets/empty-img.png";
 import clsx from "clsx";
 import ContactForm from "@/components/ContactForm";
+import useLockScroll from "@/utils/useLockScroll";
 
 const Nav = ({navItems, isOpen, setIsOpen}: NavItemsType) => {
     const backUrl = process.env.NEXT_PUBLIC_BACK_URL;
     const [openSubNav, setOpenSubNav] = useState<number | undefined>();
     const navRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const body = document.body;
-        const scroll = () => {
-            body.classList.remove("overflow-hidden");
-        }
-        const noScroll = () => {
-            body.classList.add("overflow-hidden");
-        }
+    useLockScroll(isOpen);
 
-        if (isOpen) {
-            noScroll();
-        } else {
-            scroll();
-        }
-    }, [isOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

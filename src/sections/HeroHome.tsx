@@ -13,6 +13,8 @@ const HeroHome = () => {
         queryFn: () => getHome(),
     });
 
+    const { images } = data.hero;
+    const {teaser, content, label1, url1, label2, url2} = data.hero.content;
 
     if(isLoading) return  <Loader />
 
@@ -20,14 +22,13 @@ const HeroHome = () => {
 
     return (
         <Hero
-            background={"bg-accent-shine"}
-            images={data?.hero.images}
-            teaser={data?.hero.content?.teaser}
-            content={data?.hero.content?.content}
-            label1={data?.hero.content?.label1}
-            url1={data?.hero.content?.url1}
-            label2={data?.hero.content?.label2}
-            url2={data?.hero.content?.url2}
+            images={images}
+            teaser={teaser}
+            content={content}
+            label1={label1}
+            url1={url1}
+            label2={label2}
+            url2={url2}
         />
     );
 };

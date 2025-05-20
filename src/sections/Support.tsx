@@ -15,6 +15,9 @@ const Support = () => {
         queryFn: () => getHome(),
     });
 
+    const {image} = data.support;
+    const {content, teaser, label1, url1, label2, url2} = data.support.content;
+
     if (isLoading) return <Loader/>
 
     if (error) return <p>{error.message}</p>
@@ -25,16 +28,16 @@ const Support = () => {
                 <div className="grid md:grid-cols-2 gap-[5.729vw] xl:gap-[3.5vw]">
                     <img
                         className="w-full h-full object-contain"
-                        src={data?.support.image.data ? backUrl + data?.support.image.data.attributes.url : emptyImg.src}
-                        alt={data?.support.image.data ? data?.support.image.data.attributes.alternativeText : ""}
+                        src={image.data ? backUrl + image.data.attributes.url : emptyImg.src}
+                        alt={image.data ? image.data.attributes.alternativeText : ""}
                     />
                     <Content
-                        teaser={data.support.content.teaser}
-                        content={data.support.content.content}
-                        label1={data.support.content.label1}
-                        label2={data.support.content.label2}
-                        url1={data.support.content.url1}
-                        url2={data.support.content.url2}
+                        teaser={teaser}
+                        content={content}
+                        label1={label1}
+                        label2={label2}
+                        url1={url1}
+                        url2={url2}
                         headingClassName="[&>em]:text-featured [&>em]:not-italic"
                     />
                 </div>

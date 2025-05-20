@@ -18,7 +18,7 @@
     "framer-motion": "^11.0.27",
     "js-cookie": "^3.0.5",
     "keen-slider": "^6.8.6",
-    "next": "^14.2.21",
+    "next": "15.2.4",
     "nodemailer": "^6.9.13",
     "react": "^18",
     "react-countup": "^6.5.3",

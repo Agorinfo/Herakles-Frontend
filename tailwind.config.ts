@@ -28,6 +28,11 @@ const config: Config = {
         "grid-cols-4",
         "grid-cols-5",
         "grid-cols-6",
+        "text-accent",
+        "text-accent-peps",
+        "text-accent-shine",
+        "text-featured",
+        "text-featured-shadow",
     ],
     theme: {
         screens: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {SliderLandscape} from "@/components/Slider";
+import Slider from "@/components/Slider";
 import CallToAction from "@/components/CallToAction";
 import Content from "@/components/Content";
 import {ReassuranceType} from "@/utils/types";
@@ -14,18 +14,18 @@ const Reassurance = ({icon, alt, text, label, url, images, ctaTitle, ctaText, ct
                     <img src={icon ? backUrl + icon : emptyImg.src} alt={alt}/>
                 </span>
                 <div className="">
-                    <div className="grid lg:grid-cols-3 items-center gap-[3.283vw] xl:gap-[2.2vw]">
-                        <div className="">
+                    <div className="grid lg:grid-cols-8 items-center gap-[3.283vw] xl:gap-[2.2vw]">
+                        <div className="lg:col-span-3">
                             <Content
                                 content={text}
                                 label1={label}
                                 url1={url}
                                 headingClassName="[&>em]:text-featured-muted [&>em]:not-italic"
-                                btn1ClassName='btn-featured'
+                                btn1ClassName='btn-accent'
                             />
                         </div>
-                        <div className="col-span-2">
-                            <SliderLandscape images={images.data} />
+                        <div className="lg:col-span-5">
+                            <Slider images={images.data} layout="landscape" />
                         </div>
                     </div>
                 </div>

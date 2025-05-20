@@ -53,7 +53,7 @@ export type IconCardType = {
 export type CardListType = {
     tag?: string;
     label: string;
-    color: "bleu" | "bleu foncé" | "orange"
+    color: "bleu" | "bleu foncé" | "vert"
 }
 
 export type TestimonialType = {
@@ -128,6 +128,7 @@ export type CallToActionType = {
     buttonLabel: string;
     headingClassName: string;
     buttonClassName: string;
+    noBg?: boolean;
 }
 export type CallToActionPageType = {
     title: string;
@@ -207,6 +208,34 @@ export type ReassuranceType = {
     ctaButtonClassName: string;
 }
 
+export type SectionFaqType = {
+    icon: string;
+    alt: string;
+    text: string;
+    label: string;
+    url: string;
+    images: {
+        data:
+            {
+                attributes:
+                    {
+                        url: string;
+                        alternativeText: string;
+                        formats: {
+                            small: {
+                                url: string;
+                            }
+                        }
+                    };
+            }[];
+    };
+    ctaTitle: string;
+    ctaText: string;
+    ctaButtonLabel: string;
+    ctaHeadingClassName: string;
+    ctaButtonClassName: string;
+}
+
 export type HeroHomeType = {
     images: {
         data:
@@ -225,7 +254,6 @@ export type HeroHomeType = {
     url1: string;
     label2: string;
     url2: string;
-    background?: string;
 }
 
 export type HeroPageType = {

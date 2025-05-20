@@ -9,7 +9,7 @@ import {BlocksRenderer} from "@strapi/blocks-react-renderer";
 type ListCardType = {
     id: number,
     tag:string,
-    color: "bleu" | "bleu foncé" | "orange",
+    color: "bleu" | "bleu foncé" | "vert",
     item: {
         id: number,
         label:string
@@ -21,13 +21,15 @@ const SolutionsUsers = () => {
         queryFn: () => getHome(),
     });
 
+    const {Text, listCard} = data.solutionUsers;
+
     if (isLoading) return <Loader/>
 
     if (error) return <p>{error.message}</p>
     return (
         <section className="py-12">
             <BlocksRenderer
-                content={data?.solutionUsers.Text}
+                content={Text}
                 blocks={{
                     paragraph: ({children}) => <p
                         className="paragraph text-center pb-12">{children}</p>,
@@ -49,9 +51,9 @@ const SolutionsUsers = () => {
                     }
                 }}
             />
-            <div className={`grid lg:grid-cols-${data?.solutionUsers.listCard.length} gap-6`}>
+            <div className="grid lg:grid-cols-3 gap-6">
 
-                {data?.solutionUsers.listCard.map((card:ListCardType) => {
+                {listCard.map((card:ListCardType) => {
 
                     let tagBgColor
                     let tagTextColor
@@ -61,7 +63,7 @@ const SolutionsUsers = () => {
                             tagBgColor = "bg-featured-shine";
                             tagTextColor = "text-featured-shadow";
                             break
-                        case "orange":
+                        case "vert":
                             tagBgColor = "bg-accent-muted";
                             tagTextColor = "text-accent";
                             break
