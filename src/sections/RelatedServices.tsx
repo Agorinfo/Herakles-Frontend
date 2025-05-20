@@ -1,7 +1,6 @@
 import React from 'react';
 import RelatedCard from "@/components/RelatedCard";
 import {ModalButton} from "@/components/Button";
-import Modal from "@/components/Modal";
 import ContactForm from "@/components/ContactForm";
 import {RelatedServicesType} from "@/utils/types";
 import getSolutions from "@/actions/getSolutions";
@@ -13,7 +12,7 @@ const RelatedServices = async ({title, solutions}: RelatedServicesType) => {
     return (
         <div className='py-12'>
             <h2 className="text-center text-h3 pb-12">{title}</h2>
-            <div className="pb-8 flex justify-center gap-8">
+            <div className="pb-8 flex justify-center flex-wrap gap-8">
                 {filteredSolutions.map((item:any) => (
                     <RelatedCard
                         key={item.id}

@@ -1,12 +1,17 @@
 import React from 'react';
-import type {Metadata} from "next";
+import type {Metadata, ResolvingMetadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query";
 import getRessource from "@/actions/getRessource";
 import HeroRessource from "@/components/HeroRessource";
 import RessourceContent from "@/components/RessourceContent";
 
-export const generateMetadata = async ({params}: { params: { slug: string } }): Promise<Metadata> => {
+type Props = {
+    params: { slug: string };
+};
+
+
+export const generateMetadata = async ({params}: Props, parent?: ResolvingMetadata) : Promise<Metadata> => {
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
     const ressource = await getRessource(params.slug);
@@ -39,7 +44,7 @@ export const generateMetadata = async ({params}: { params: { slug: string } }): 
 };
 
 
-const Ressource = async ({params}: { params: { slug: string } }) => {
+const Ressource = async ({params}: Props) => {
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
         queryKey: ["ressource", params.slug],

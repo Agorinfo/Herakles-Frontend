@@ -78,7 +78,7 @@ const SolutionsUsers = () => {
                         <div key={card.id} className="relative">
                             {card.tag &&
                                 <span
-                                    className={`absolute left-1/2 top-[-0.8125rem] -translate-x-1/2 uppercase rounded-full text-sm font-bold py-1.5 px-3 ${tagBgColor} ${tagTextColor}`}
+                                    className={`absolute left-1/2 top-[-0.8125rem] -translate-x-1/2 uppercase rounded-full text-sm font-bold py-1.5 px-3 whitespace-nowrap ${tagBgColor} ${tagTextColor}`}
                                 >
                                     {card.tag}
                                 </span>}
