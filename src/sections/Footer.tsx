@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from 'react';
 import Button, {ModalButton} from "@/components/Button";
 import Link from "next/link";
