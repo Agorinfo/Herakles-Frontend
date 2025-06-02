@@ -62,7 +62,7 @@ const HeroRessources = () => {
                     alt={data?.archiveRessources.image.data?.alternativeText}
                     layout="square"
                 />
-                </div>
+            </div>
         </section>
     );
 };
