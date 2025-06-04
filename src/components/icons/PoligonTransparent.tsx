@@ -12,7 +12,7 @@ const PoligonTransparent = ({className}: { className?: string }) => {
         >
             <path
                 d="M337.462 147.921L253.532 294.737H85.6907L1.76124 147.921L85.6907 1.10548L253.532 1.10547L337.462 147.921Z"
-                stroke="#663B8E"
+                stroke="#FC3"
                 strokeWidth="2"
             />
         </svg>

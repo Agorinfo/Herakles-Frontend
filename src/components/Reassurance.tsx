@@ -14,7 +14,7 @@ const Reassurance = ({icon, alt, text, label, url, images, ctaTitle, ctaText, ct
                     <img src={icon ? backUrl + icon : emptyImg.src} alt={alt}/>
                 </span>
                 <div className="">
-                    <div className="grid lg:grid-cols-8 items-center gap-[3.283vw] xl:gap-[2.2vw]">
+                    <div className="grid lg:grid-cols-8 items-center gap-[6rem] xl:gap-[2.2vw]">
                         <div className="lg:col-span-3">
                             <Content
                                 content={text}
