@@ -87,7 +87,7 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                                 <Content btn1ClassName="btn btn-accent" content={text} headingStyle={{color: "#B2DFFF"}}
                                          headingClassName="max-w-[34rem]"/>
                                 <div className="flex items-center gap-3">
-                                    <ModalButton label="Réserver une démo" className="btn btn-accent w-full md:w-auto">
+                                    <ModalButton label="Réserver une démo" className="btn btn-featured w-full md:w-auto">
                                         <ContactForm/>
                                     </ModalButton>
                                 </div>
