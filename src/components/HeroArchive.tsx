@@ -24,7 +24,7 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
     const [colors, setColors] = useState<{ base: string; hover: string; accent: string; muted: string; }>(initialColors)
     const backUrl = process.env.NEXT_PUBLIC_BACK_URL;
     const color = modules.filter(module => active === module.attributes.slug).map(item => item.attributes.brandColor);
-    const background = modules.filter(module => active === module.attributes.slug).map(item => item.attributes.heroArchive.background.data?.attributes.url);
+    const background = modules.filter(module => active === module.attributes.slug).map(item => item.attributes.heroArchive.background.data.attributes.url);
 
     const [ref] = useKeenSlider<HTMLDivElement>({
         breakpoints: {
@@ -75,19 +75,19 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                 >
                     {!active &&
                         <>
-                            {/*<img*/}
-                            {/*    className="absolute inset-0 mix-blend-multiply w-full h-full backdrop-brightness-75"*/}
-                            {/*    src="/agorinfo-filigrane-min.png"*/}
-                            {/*    srcSet="/agorinfo-filigrane-min.png 200w, /agorinfo-filigrane-max.png 400w"*/}
-                            {/*    sizes="(max-width: 600px) 200px, 50vw"*/}
-                            {/*    alt=""*/}
-                            {/*/>*/}
+                            <img
+                                className="absolute inset-0 mix-blend-multiply w-full h-full backdrop-brightness-75"
+                                src="/agorinfo-filigrane-min.png"
+                                srcSet="/agorinfo-filigrane-min.png 200w, /agorinfo-filigrane-max.png 400w"
+                                sizes="(max-width: 600px) 200px, 50vw"
+                                alt=""
+                            />
                             <div className="relative z-10">
                                 <p className="text-h5 font-bold">{teaser}</p>
                                 <Content btn1ClassName="btn btn-accent" content={text} headingStyle={{color: "#B2DFFF"}}
                                          headingClassName="max-w-[34rem]"/>
                                 <div className="flex items-center gap-3">
-                                    <ModalButton label="Réserver une démo" className="btn btn-featured w-full md:w-auto">
+                                    <ModalButton label="Réserver une démo" className="btn btn-accent w-full md:w-auto">
                                         <ContactForm/>
                                     </ModalButton>
                                 </div>
@@ -108,8 +108,8 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                                 >
                                     {heroArchive.logo &&
                                         <img
-                                            src={backUrl + heroArchive.logo.data?.attributes.url}
-                                            alt={heroArchive.logo.data?.attributes.alternativeText}
+                                            src={backUrl + heroArchive.logo.data.attributes.url}
+                                            alt={heroArchive.logo.data.attributes.alternativeText}
                                             className="lg:hidden w-32 h-12 rounded-lg shadow-slide object-cover mb-4"
                                         />
                                     }
@@ -163,7 +163,7 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                                             href={"solutions/" + active}
                                             className="link-normal-white pt-8 inline-flex items-center gap-2"
                                         >
-                                            {label}
+                                            {heroArchive.label}
                                             <Icon name="arrowRight"/>
                                         </a>
                                     </motion.div>
