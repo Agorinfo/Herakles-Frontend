@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import ImageWithDecoration from "@/components/ImageWithDecoration";
 
 const HeroRessources = () => {
+    const backUrl = process.env.NEXT_PUBLIC_BACK_URL;
     const {data, error, isLoading} = useQuery({
         queryKey: ["global"],
         queryFn: () => getGlobal(),
@@ -18,8 +19,8 @@ const HeroRessources = () => {
 
     return (
         <section className="bg-accent-shine full-width">
-            <div className="grid md:grid-cols-2 gap-[5.729vw] xl:gap-[3.5vw] py-28">
-                <div>
+            <div className="grid md:grid-cols-2 gap-[5.729vw] xl:gap-[3.5vw] pt-16 pb-15">
+                <div className="py-12">
 
                     <BlocksRenderer
                         content={typeof data.archiveRessources.text === "string" ? JSON.parse(data.archiveRessources.text) : data.archiveRessources.text}
@@ -58,8 +59,8 @@ const HeroRessources = () => {
                     />
                 </div>
                 <ImageWithDecoration
-                    src={data?.archiveRessources.image.data?.url}
-                    alt={data?.archiveRessources.image.data?.alternativeText}
+                    src={ data?.archiveRessources?.image.data ? backUrl + data?.archiveRessources?.image.data?.attributes.url : ""}
+                    alt={data?.archiveRessources?.image.data?.attributes.alternativeText}
                     layout="square"
                 />
             </div>

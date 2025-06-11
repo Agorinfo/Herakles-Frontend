@@ -87,9 +87,9 @@ const RessourceGridItems = () => {
                                     categoryColor={ressource.category?.data.attributes.color}
                                     src={
                                         ressource.featuredImage?.data
-                                            ? ressource.featuredImage.data.attributes.formats?.thumbnail
+                                            ? ressource.featuredImage.data.attributes.formats?.small
                                                 ? backUrl +
-                                                ressource.featuredImage.data.attributes.formats.thumbnail.url
+                                                ressource.featuredImage.data.attributes.formats.small.url
                                                 : backUrl + ressource.featuredImage.data.attributes.url
                                             : emptyImg.src
                                     }

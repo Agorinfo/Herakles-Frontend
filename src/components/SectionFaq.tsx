@@ -34,6 +34,7 @@ const SectionFaq = () => {
             <section className="relative pt-28 mt-24 bg-accent-shadow full-width text-white">
                 <span className="absolute left-0 -top-10 md:-top-20 size-20 md:size-40 rounded-full inline-flex items-center justify-center bg-featured-shine shadow-thumb">
                     <img
+                        className="w-full h-full max-w-[45px] md:max-w-[90px]"
                         src={global.data.favicon.data.attributes.url ? backUrl + global.data.favicon.data.attributes.url : emptyImg.src}
                         alt={global.data.favicon.data.attributes.alternativeText}
                     />
@@ -87,7 +88,6 @@ const SectionFaq = () => {
                                 expanded={expanded}
                                 setExpanded={setExpanded}
                             />
-                            <button className="btn btn-accent">Voir plus</button>
                         </div>
                         <div className="lg:col-span-5">
                             <Slider images={faq.images?.data} layout="landscape" />
