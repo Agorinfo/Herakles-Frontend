@@ -116,7 +116,7 @@ const ImageWithDecoration = ({
                     </div>
                 </div>
                 <span
-                    className={`absolute ${trianglePosition} ${layout === "square" && squareSize === "small" ? "w-[55px]" : "w-[55px] md:w-[110px]"} z-20`}>{triangle}</span>
+                    className={`absolute ${trianglePosition} ${layout === "square" && squareSize === "small" ? "w-[70px] lg:w-[110px]" : "w-[55px] md:w-[110px]"} z-20`}>{triangle}</span>
             </div>
         </div>
     );

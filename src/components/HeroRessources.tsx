@@ -22,7 +22,7 @@ const HeroRessources = () => {
             <div className="grid md:grid-cols-2 gap-[5.729vw] xl:gap-[3.5vw] pt-16 pb-15">
                 <div className="py-12">
 
-                    <BlocksRenderer
+                    {data.archiveRessources?.text && <BlocksRenderer
                         content={typeof data.archiveRessources.text === "string" ? JSON.parse(data.archiveRessources.text) : data.archiveRessources.text}
                         blocks={{
                             list: ({children}) =>
@@ -39,7 +39,8 @@ const HeroRessources = () => {
                             heading: ({children, level}) => {
                                 switch (level) {
                                     case 1:
-                                        return <h1 className={"mb-8 font-bold text-h1 md:mb-12 [&>em]:text-featured [&>em]:not-italic"}>{children}</h1>
+                                        return <h1
+                                            className={"mb-8 font-bold text-h1 md:mb-12 [&>em]:text-featured [&>em]:not-italic"}>{children}</h1>
                                     case 2:
                                         return <>
                                             <h2
@@ -56,7 +57,7 @@ const HeroRessources = () => {
                                 }
                             }
                         }}
-                    />
+                    />}
                 </div>
                 <ImageWithDecoration
                     src={ data?.archiveRessources?.image.data ? backUrl + data?.archiveRessources?.image.data?.attributes.url : ""}

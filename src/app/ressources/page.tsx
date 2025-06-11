@@ -12,7 +12,7 @@ import getAllRessources from "@/actions/getAllRessources";
 export const generateMetadata = async (): Promise<Metadata> => {
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
-    const metas = global.archiveRessources.metas
+    const metas = global.archiveRessources?.metas
 
     return {
         metadataBase: new URL(FRONT_URL + "/services"),
