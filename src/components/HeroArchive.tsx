@@ -24,22 +24,13 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
     const [colors, setColors] = useState<{ base: string; hover: string; accent: string; muted: string; }>(initialColors)
     const backUrl = process.env.NEXT_PUBLIC_BACK_URL;
     const color = modules.filter(module => active === module.attributes.slug).map(item => item.attributes.brandColor);
-    const background = modules.filter(module => active === module.attributes.slug).map(item => item.attributes.heroArchive.background.data.attributes.url);
+    const background = modules?.filter(module => active === module?.attributes.slug).map(item => item?.attributes.heroArchive?.background.data?.attributes.url);
 
     const [ref] = useKeenSlider<HTMLDivElement>({
         breakpoints: {
             "(min-width: 400px)": {
                 slides: {perView: 2, spacing: 16},
-            },
-            // "(min-width: 768px)": {
-            //     slides: {perView: 2, spacing: 32},
-            // },
-            // "(min-width: 1080px)": {
-            //     slides: {perView: 4, spacing: 32},
-            // },
-            // "(min-width: 1536px)": {
-            //     slides: {perView: 3, spacing: 32},
-            // },
+            }
         },
         slides: {
             perView: 1,
@@ -106,8 +97,8 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                                 >
                                     {heroArchive.logo &&
                                         <img
-                                            src={backUrl + heroArchive.logo.data.attributes.url}
-                                            alt={heroArchive.logo.data.attributes.alternativeText}
+                                            src={backUrl + heroArchive.logo.data?.attributes.url}
+                                            alt={heroArchive.logo.data?.attributes.alternativeText}
                                             className="lg:hidden w-32 h-12 rounded-lg shadow-slide object-cover mb-4"
                                         />
                                     }
