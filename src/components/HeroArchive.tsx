@@ -29,7 +29,7 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
     const [ref] = useKeenSlider<HTMLDivElement>({
         breakpoints: {
             "(min-width: 400px)": {
-                slides: {perView: 3, spacing: 16},
+                slides: {perView: 2, spacing: 16},
             },
             // "(min-width: 768px)": {
             //     slides: {perView: 2, spacing: 32},
@@ -76,10 +76,8 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                     {!active &&
                         <>
                             <img
-                                className="absolute inset-0 mix-blend-multiply w-full h-full backdrop-brightness-75"
-                                src="/agorinfo-filigrane-min.png"
-                                srcSet="/agorinfo-filigrane-min.png 200w, /agorinfo-filigrane-max.png 400w"
-                                sizes="(max-width: 600px) 200px, 50vw"
+                                className="absolute inset-0 w-full h-full "
+                                src="/Fond_Edilogic.png"
                                 alt=""
                             />
                             <div className="relative z-10">

@@ -129,6 +129,7 @@ export type CallToActionType = {
     headingClassName: string;
     buttonClassName: string;
     noBg?: boolean;
+    url?: string;
 }
 export type CallToActionPageType = {
     title: string;

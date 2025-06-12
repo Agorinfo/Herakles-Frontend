@@ -25,6 +25,37 @@ const CallToAction = ({title, text, headingClassName, buttonClassName, noBg}: Ca
 };
 export default CallToAction;
 
+export const CallToActionRessource = ({
+                                          title,
+                                          text,
+                                          headingClassName,
+                                          buttonClassName,
+                                          noBg,
+                                          buttonLabel,
+                                          url
+                                      }: CallToActionType) => {
+    return (
+        <section
+            className={`${noBg ? "" : "bg-gradient-to-b from-accent-shadow"} from-50% to-white to-50% py-12 full-width -mt-px`}>
+            <div
+                className="flex flex-col lg:flex-row items-center justify-between w-full bg-grayscale-lighter p-8 rounded-lg gap-8">
+                <div className="flex-[3] pb-6 lg:pb-0">
+                    <h3 className={"text-h3 font-bold pb-2 " + headingClassName}>{title}</h3>
+                    <p className="paragraph">{text}</p>
+                </div>
+
+                {url === "#" ?
+                    <ModalButton label={buttonLabel} className={"flex-1 btn " + buttonClassName}>
+                        <ContactForm/>
+                    </ModalButton>
+                    :
+                    <Button url={url} label={buttonLabel} className={"flex-1 btn " + buttonClassName}/>
+                }
+            </div>
+        </section>
+    );
+};
+
 export const CallToActionNewsletter = () => {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
