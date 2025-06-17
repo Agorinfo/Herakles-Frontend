@@ -39,7 +39,7 @@ export const generateMetadata = async ({params}: { params: { slug: string } }): 
 };
 
 
-const Ressource = async ({params}: { params: { slug: string } }) => {
+const Ressource = async ({params}: { params: { slug: string } }): Promise<any> => {
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery({
         queryKey: ["ressource", params.slug],
