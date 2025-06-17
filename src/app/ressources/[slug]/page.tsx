@@ -6,11 +6,6 @@ import getRessource from "@/actions/getRessource";
 import HeroRessource from "@/components/HeroRessource";
 import RessourceContent from "@/components/RessourceContent";
 
-type Props = {
-    params: Promise<{ slug: string }>;
-};
-
-
 export const generateMetadata = async ({params}: { params: { slug: string } }): Promise<Metadata> => {
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
