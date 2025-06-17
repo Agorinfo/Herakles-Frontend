@@ -11,26 +11,27 @@ type Props = {
     params: Promise<{ slug: string }>;
 };
 
-export const generateMetadata = async ({params}: { params: { slug: string } }): Promise<Metadata> => {
+export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+    const {slug} = await params;
     const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
-    const service = await getService(params.slug);
+    const service = await getService(slug);
     const metas = service[0].attributes.metas
 
     return {
-        metadataBase: new URL(FRONT_URL + "/" + params.slug),
+        metadataBase: new URL(FRONT_URL + "/" + slug),
         title: metas.meta_title || "Edilogic, éditeur de solution logicielles métier",
         description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
         openGraph: {
             title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/" + params.slug,
+            url: FRONT_URL + "/" + slug,
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },
         twitter: {
             card: 'summary_large_image',
-            site: FRONT_URL + "/" + params.slug,
+            site: FRONT_URL + "/" + slug,
             title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
@@ -43,8 +44,9 @@ export const generateMetadata = async ({params}: { params: { slug: string } }): 
     }
 };
 
-const Service = async ({params}: { params: { slug: string } }) => {
-    const data = await getService(params.slug);
+const Service = async ({params}: Props) => {
+    const {slug} = await params;
+    const data = await getService(slug);
 
     if(!data) return <Loader />;
 
