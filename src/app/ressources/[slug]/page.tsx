@@ -28,7 +28,7 @@ export const generateMetadata = async ({params}: { params: { slug: string } }): 
             site: FRONT_URL + "/" + params.slug,
             title: metas?.meta_title || ressource[0]?.attributes.title,
             description: metas?.meta_description || ressource[0]?.attributes.shortDescription,
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || BACK_URL + ressource[0]?.attributes.featuredImage?.data?.attributes?.formats?.thumbnail?.url  || ""],
+            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || BACK_URL + ressource[0]?.attributes.featuredImage?.data?.attributes?.formats?.thumbnail?.url || ""],
         },
         icons: {
             icon: `${BACK_URL}${global?.favicon.data.attributes.url}`,
