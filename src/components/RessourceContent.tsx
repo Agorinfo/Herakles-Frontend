@@ -8,7 +8,7 @@ import Loader from "@/components/Loader";
 import {ArrowLeft} from "@phosphor-icons/react";
 import RelatedRessources from "@/components/RelatedRessources";
 import ImageWithDecoration from "@/components/ImageWithDecoration";
-import {CallToActionRessource} from "@/components/CallToAction";
+import CallToAction, {CallToActionRessource} from "@/components/CallToAction";
 import getGlobal from "@/actions/getGlobal";
 
 const RessourceContent = () => {
@@ -36,7 +36,7 @@ const RessourceContent = () => {
             <div className="py-16">
                 <div>
                     <button
-                        className="text-featured"
+                        className="text-featured mb-16"
                         onClick={() => window.history.back()}
                     >
                         <ArrowLeft size={24}/>
@@ -74,9 +74,9 @@ const RessourceContent = () => {
                                             case 4:
                                             case 5:
                                             case 6:
-                                                return <h3 className="text-h3">{children}</h3>
+                                                return <h3 className="text-h3 pb-4">{children}</h3>
                                             default:
-                                                return <h1 className="text-h1">{children}</h1>
+                                                return <h1 className="text-h1 pb-4">{children}</h1>
                                         }
                                     },
                                     image: ({image}) => {
@@ -120,7 +120,7 @@ const RessourceContent = () => {
                 />}
             <div>
                 <button
-                    className="text-featured"
+                    className="text-featured pb-8"
                     onClick={() => window.history.back()}
                 >
                     <ArrowLeft size={24}/>
