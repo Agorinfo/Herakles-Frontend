@@ -40,7 +40,7 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                         <>
                             <img
                                 className="absolute inset-0 w-full h-full"
-                                src="/fond_wenegoce_site.png"
+                                src="/Fond_Edilogic.png"
                                 alt=""
                             />
                             <div className="relative z-10">
