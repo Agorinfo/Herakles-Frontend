@@ -52,7 +52,7 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                     {!active &&
                         <>
                             <img
-                                className="absolute inset-0 mix-blend-multiply w-full h-full backdrop-brightness-75"
+                                className="absolute inset-0 w-full h-full"
                                 src="/Fond_Edilogic.png"
                                 alt=""
                             />
