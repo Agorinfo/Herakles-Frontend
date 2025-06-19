@@ -54,7 +54,6 @@ const Content = ({teaser, content, label1, label2, url1, url2, headingClassName,
                                 return <>
                                     <style>{dynamicEmStyle}</style>
                                     <h2
-                                        style={headingStyle}
                                         className={"pb-8 text-h1 font-bold md:pb-12 " + headingClassName}>{children}
                                     </h2>
                                 </>
