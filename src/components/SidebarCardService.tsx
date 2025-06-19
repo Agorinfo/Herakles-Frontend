@@ -17,25 +17,25 @@ const SidebarCardService = ({service, active, setActive}: SidebarCardProps ) => 
     let borderColor;
 
     switch (service) {
-        case "deploiement":
+        case "projet":
             bgColor = "bg-featured-shadow"
             borderColor = "border-featured-shadow"
             bgHover = "hover:bg-featured-peps"
-            icon = "stepOne.png"
-            label = "Déploiement"
+            icon = "stepThree.png"
+            label = "Projet"
             break;
         case "formation":
             bgColor = "bg-accent"
             borderColor = "border-accent"
             bgHover = "hover:bg-accent-peps"
-            icon = "stepTwo.png"
+            icon = "stepOne.png"
             label = "Formation"
             break;
         case "assistance" :
             bgColor = "bg-featured"
             borderColor = "border-featured"
             bgHover = "hover:bg-featured-peps"
-            icon = "stepThree.png"
+            icon = "stepTwo.png"
             label = "Installation et configuration"
             label = "assistance"
             break;
@@ -46,12 +46,12 @@ const SidebarCardService = ({service, active, setActive}: SidebarCardProps ) => 
             icon = "stepFour.png"
             label = "Développement"
             break;
-        case "distribution":
+        case "materiels":
             bgColor = "bg-featured"
             borderColor = "border-featured"
             bgHover = "hover:bg-featured-peps"
             icon = "stepFive.png"
-            label = "Distribution"
+            label = "Matériels"
             break;
         default:
             break;
@@ -60,8 +60,12 @@ const SidebarCardService = ({service, active, setActive}: SidebarCardProps ) => 
         <button
             type={"button"}
             onClick={() => setActive(active === service ? undefined : service)}
-            className={`sidebarCard min-w-[7.5rem] w-full lg:w-auto lg:min-w-[230px] ${active === service ? `border-b-4 pb-2 lg:border-b-0 lg:pb-6 lg:pr-4 lg:border-r-8 ${borderColor} bg-white text-black` : ` ${bgColor} ${bgHover}`}`}>
-            <img src={icon} alt="icon" className="w-14 h-14"/>
+            className={`sidebarCard min-w-[7.5rem] w-full lg:w-auto lg:min-w-[270px] ${active === service ? `border-b-4 pb-2 lg:border-b-0 lg:pb-6 lg:pr-4 lg:border-r-8 ${borderColor} bg-white text-black` : ` ${bgColor} ${bgHover}`}`}>
+            <img
+                src={icon}
+                alt="icon"
+                className="w-14 h-14"
+            />
             <span className="flex-auto text-left">{label}</span>
         </button>
     );

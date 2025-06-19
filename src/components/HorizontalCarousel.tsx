@@ -16,7 +16,7 @@ export const HorizontalCarousel = ({ children }: CarouselProps) => {
 
         const containerWidth = containerRef.current.offsetWidth
         const contentWidth = contentRef.current.scrollWidth
-        console.log("contentWidth :", contentWidth,"containerWidth :", containerWidth,)
+
         const maxDrag = contentWidth - containerWidth
         setDragLimit(maxDrag > 0 ? maxDrag : 0)
     }, [children])
