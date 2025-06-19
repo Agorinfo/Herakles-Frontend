@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import  {ModalButton} from "@/components/Button";
-import SidebarCard from "@/components/SidebarCard";
 import ContactForm from "@/components/ContactForm";
 import Content from "@/components/Content";
 import {HeroArchiveServiceType} from "@/utils/types";
@@ -10,6 +9,7 @@ import Icon from "@/components/icons/Icon";
 import {useKeenSlider} from "keen-slider/react";
 import {HorizontalCarousel} from "@/components/HorizontalCarousel";
 import {VerticalCarousel} from "@/components/VerticalCarousel";
+import SidebarCardService from "@/components/SidebarCardService";
 
 const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveServiceType) => {
     const [active, setActive] = useState<string | undefined>();
@@ -173,7 +173,7 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                 <div className="hidden lg:block">
                     <VerticalCarousel>
                         {modules.map(item => (
-                            <SidebarCard
+                            <SidebarCardService
                                 key={item.id}
                                 active={active}
                                 setActive={setActive}
@@ -186,7 +186,7 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                 <div className="lg:hidden">
                     <HorizontalCarousel>
                         {modules.map(item => (
-                            <SidebarCard
+                            <SidebarCardService
                                 key={item.id}
                                 active={active}
                                 setActive={setActive}
