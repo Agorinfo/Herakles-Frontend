@@ -21,21 +21,21 @@ const SidebarCardService = ({service, active, setActive}: SidebarCardProps ) => 
             bgColor = "bg-featured-shadow"
             borderColor = "border-featured-shadow"
             bgHover = "hover:bg-featured-peps"
-            icon = "stepThree.png"
+            icon = "stepOne.png"
             label = "Projet"
             break;
         case "formation":
             bgColor = "bg-accent"
             borderColor = "border-accent"
             bgHover = "hover:bg-accent-peps"
-            icon = "stepOne.png"
+            icon = "stepTwo.png"
             label = "Formation"
             break;
         case "assistance" :
             bgColor = "bg-featured"
             borderColor = "border-featured"
             bgHover = "hover:bg-featured-peps"
-            icon = "stepTwo.png"
+            icon = "stepThree.png"
             label = "Installation et configuration"
             label = "assistance"
             break;
