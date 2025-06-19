@@ -11,19 +11,18 @@ export const HorizontalCarousel = ({ children }: CarouselProps) => {
     const containerRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
     const [dragLimit, setDragLimit] = useState(0)
-
     useEffect(() => {
         if (!containerRef.current || !contentRef.current) return
 
         const containerWidth = containerRef.current.offsetWidth
         const contentWidth = contentRef.current.scrollWidth
-
+        console.log("contentWidth :", contentWidth,"containerWidth :", containerWidth,)
         const maxDrag = contentWidth - containerWidth
         setDragLimit(maxDrag > 0 ? maxDrag : 0)
     }, [children])
 
     return (
-        <div ref={containerRef} className="overflow-hidden w-full">
+        <div ref={containerRef} className="overflow-hidden w-full lg:hidden">
             <motion.div
                 ref={contentRef}
                 className="flex gap-4 cursor-grab active:cursor-grabbing"
