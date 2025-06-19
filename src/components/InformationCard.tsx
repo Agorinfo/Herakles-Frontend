@@ -48,7 +48,7 @@ const InformationCard = ({logo, data, modules, badge, icon, colors}: Information
             transition={{duration: 0.7}}
             className="flex text-grayscale-darkest lg:h-[14.875rem] bg-white rounded-lg">
             <div className="relative w-[14.875rem] hidden lg:block">
-                {data.image?.data &&
+                {data?.image?.data &&
                     <img
                         className="hidden lg:block w-full h-full object-cover rounded-l-lg"
                         src={backUrl + data.image.data.attributes.url}
@@ -79,9 +79,9 @@ const InformationCard = ({logo, data, modules, badge, icon, colors}: Information
                 <p style={{color: colors?.base}}
                    className="font-bold pb-2"
                 >
-                    {data.title}
+                    {data?.title}
                 </p>
-                <p className="pb-8">{data.text}</p>
+                <p className="pb-8">{data?.text}</p>
                 <ul className="grid lg:grid-cols-2 gap-x-6 gap-y-2">
                     {modules && modules.map((module) => (
                         <li

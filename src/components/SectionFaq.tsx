@@ -43,7 +43,7 @@ const SectionFaq = () => {
                     <div className="grid lg:grid-cols-8 items-center gap-[3.283vw] xl:gap-[2.2vw]">
                         <div className="lg:col-span-3">
                             <BlocksRenderer
-                                content={faq.content}
+                                content={faq?.content}
                                 blocks={{
                                     list: ({children}) =>
                                         <ul className="list-check list-inside pb-12">{children}</ul>,

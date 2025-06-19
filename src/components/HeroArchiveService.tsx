@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import Button, {ModalButton} from "@/components/Button";
+import  {ModalButton} from "@/components/Button";
 import SidebarCard from "@/components/SidebarCard";
-import Modal from "@/components/Modal";
 import ContactForm from "@/components/ContactForm";
 import Content from "@/components/Content";
 import {HeroArchiveServiceType} from "@/utils/types";
@@ -9,6 +8,8 @@ import InformationCard from "@/components/InformationCard";
 import {AnimatePresence, motion} from "framer-motion";
 import Icon from "@/components/icons/Icon";
 import {useKeenSlider} from "keen-slider/react";
+import {HorizontalCarousel} from "@/components/HorizontalCarousel";
+import {VerticalCarousel} from "@/components/VerticalCarousel";
 
 const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveServiceType) => {
     const [active, setActive] = useState<string | undefined>();
@@ -168,22 +169,31 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                         })
                     }
                 </motion.div>
-                {/*<div className="hidden lg:grid gap-8">*/}
-                {/*    {modules.map(item => (*/}
-                {/*        <SidebarCard active={active} setActive={setActive} key={item.id}*/}
-                {/*                     service={item.attributes.slug}/>*/}
-                {/*    ))}*/}
-                {/*</div>*/}
-                <div ref={ref} className="keen-slider max-h-[640px] lg:!w-[300px]">
-                    {modules.map(item => (
-                        <div key={item.id} className="keen-slider__slide !min-w-[7.5rem] rounded-2xl">
+                {/* Desktop : vertical carousel */}
+                <div className="hidden lg:block">
+                    <VerticalCarousel>
+                        {modules.map(item => (
                             <SidebarCard
+                                key={item.id}
                                 active={active}
                                 setActive={setActive}
                                 service={item.attributes.slug}
                             />
-                        </div>
-                    ))}
+                        ))}
+                    </VerticalCarousel>
+                </div>
+                {/* Mobile : horizontal carousel */}
+                <div className="lg:hidden">
+                    <HorizontalCarousel>
+                        {modules.map(item => (
+                            <SidebarCard
+                                key={item.id}
+                                active={active}
+                                setActive={setActive}
+                                service={item.attributes.slug}
+                            />
+                        ))}
+                    </HorizontalCarousel>
                 </div>
             </div>
         </AnimatePresence>
