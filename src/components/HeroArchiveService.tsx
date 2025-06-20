@@ -172,7 +172,6 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                     </VerticalCarousel>
                 </div>
                 {/* Mobile : horizontal carousel */}
-                <div className="lg:hidden">
                     <HorizontalCarousel>
                         {modules.map((item) => (
                             <SidebarCardService
@@ -183,7 +182,6 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                             />
                         ))}
                     </HorizontalCarousel>
-                </div>
             </div>
         </AnimatePresence>
     );
