@@ -22,6 +22,7 @@ const HeroHome = () => {
 
     return (
         <Hero
+            background
             images={images}
             teaser={teaser}
             content={content}
