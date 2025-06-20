@@ -17,12 +17,12 @@ const SidebarCardService = ({service, active, setActive}: SidebarCardProps ) => 
     let borderColor;
 
     switch (service) {
-        case "projet":
+        case "deploiement":
             bgColor = "bg-featured-shadow"
             borderColor = "border-featured-shadow"
             bgHover = "hover:bg-featured-peps"
             icon = "stepOne.png"
-            label = "Projet"
+            label = "Déploiement"
             break;
         case "formation":
             bgColor = "bg-accent"
@@ -37,7 +37,7 @@ const SidebarCardService = ({service, active, setActive}: SidebarCardProps ) => 
             bgHover = "hover:bg-featured-peps"
             icon = "stepThree.png"
             label = "Installation et configuration"
-            label = "assistance"
+            label = "Assistance"
             break;
         case "developpements-adaptatifs" :
             bgColor = "bg-accent"

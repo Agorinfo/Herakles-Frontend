@@ -131,13 +131,15 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                                         transition={{duration: 0.7}}
                                         className="text-right"
                                     >
-                                        <a
-                                            href={"services/" + active}
-                                            className="link-normal-white pt-8 inline-flex items-center gap-2"
-                                        >
-                                            {label}
-                                            <Icon name="arrowRight"/>
-                                        </a>
+                                        {heroArchive.url && heroArchive.label &&
+                                            <a
+                                                href={heroArchive.url}
+                                                className="link-normal-white pt-8 inline-flex items-center gap-2"
+                                            >
+                                                {heroArchive.label}
+                                                <Icon name="arrowRight"/>
+                                            </a>
+                                        }
                                     </motion.div>
                                     <motion.div
                                         key={"teaser-" + item.id}
