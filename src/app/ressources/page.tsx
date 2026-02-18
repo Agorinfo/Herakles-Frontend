@@ -16,11 +16,11 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
     return {
         metadataBase: new URL(FRONT_URL + "/services"),
-        title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
+        title: metas?.meta_title || "Ressources | Edilogic",
         description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
         openGraph: {
-            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
+            title: metas?.meta_title || "Ressources | Edilogic",
+            siteName: metas?.meta_title || "Ressources | Edilogic",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             url: FRONT_URL + "/ressources",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
@@ -28,7 +28,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
         twitter: {
             card: 'summary_large_image',
             site: FRONT_URL + "/services",
-            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
+            title: metas?.meta_title || "Ressources | Edilogic",
             description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
             images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
         },

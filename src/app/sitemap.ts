@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date().toISOString(),
     }));
 
-    const dynamicRessourcePages = ressourceSlugs.map((data: { attributes: { slug: string } }) => ({
+    const dynamicRessourcePages = ressourceSlugs.data.map((data: { attributes: { slug: string } }) => ({
         url: `${baseUrl}/ressources/${data.attributes.slug}`,
         lastModified: new Date().toISOString(),
     }));
