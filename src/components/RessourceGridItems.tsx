@@ -6,7 +6,7 @@ import {useQuery} from "@tanstack/react-query";
 import emptyImg from "@/assets/empty-img.png";
 import Loader from "@/components/Loader";
 import RessourcesFilter from "@/components/RessourcesFilter";
-import {motion} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {createColorPalette} from "@/lib/createColorPalette";
 import {useSearchParams} from "next/navigation";
 
@@ -50,7 +50,6 @@ const RessourceGridItems = () => {
     if (isLoading) return <Loader/>;
     if (error) return <p>{error.message}</p>;
 
-
     return (
         <section id={"ressources"} className="py-12">
             <h2 className="text-h2 text-center font-bold pb-6">Nos ressources</h2>
@@ -63,12 +62,11 @@ const RessourceGridItems = () => {
                 }}
                 activeCategory={activeCategory}
             />
-
-
-                <motion.div
-                    layout
-                    className="grid sm:grid-cols-2 gap-6 lg:grid-cols-3 md:gap-12 xl:gap-16"
-                >
+            <motion.div
+                layout
+                className="grid sm:grid-cols-2 gap-6 lg:grid-cols-3 md:gap-12 xl:gap-16"
+            >
+                <AnimatePresence mode={"popLayout"}>
                     {visibleItems.map((item: any, index: number) => {
                         const ressource = item.attributes;
                         const id = item.id;
@@ -80,30 +78,32 @@ const RessourceGridItems = () => {
                         );
 
                         return (
-                                <RessourceCard
-                                    key={id}
-                                    id={id}
-                                    colors={color}
-                                    categoryColor={ressource.category?.data.attributes.color}
-                                    src={
-                                        ressource.featuredImage?.data
-                                            ? ressource.featuredImage.data.attributes.formats?.small
-                                                ? backUrl +
-                                                ressource.featuredImage.data.attributes.formats.small.url
-                                                : backUrl + ressource.featuredImage.data.attributes.url
-                                            : emptyImg.src
-                                    }
-                                    alt={
-                                        ressource.featuredImage?.data?.attributes?.alternativeText || ""
-                                    }
-                                    url={`/ressources/${ressource.slug}`}
-                                    category={ressource.category?.data.attributes.name}
-                                    title={ressource.title}
-                                    shortDescription={ressource.shortDescription}
-                                />
+
+                            <RessourceCard
+                                key={id}
+                                id={id}
+                                colors={color}
+                                categoryColor={ressource.category?.data.attributes.color}
+                                src={
+                                    ressource.featuredImage?.data
+                                        ? ressource.featuredImage.data.attributes.formats?.small
+                                            ? backUrl +
+                                            ressource.featuredImage.data.attributes.formats.small.url
+                                            : backUrl + ressource.featuredImage.data.attributes.url
+                                        : emptyImg.src
+                                }
+                                alt={
+                                    ressource.featuredImage?.data?.attributes?.alternativeText || ""
+                                }
+                                url={`/ressources/${ressource.slug}`}
+                                category={ressource.category?.data.attributes.name}
+                                title={ressource.title}
+                                shortDescription={ressource.shortDescription}
+                            />
                         );
                     })}
-                </motion.div>
+                </AnimatePresence>
+            </motion.div>
 
             {
                 canLoadMore && (
@@ -118,8 +118,7 @@ const RessourceGridItems = () => {
                 )
             }
         </section>
-    )
-        ;
+    );
 };
 
 export default RessourceGridItems;
