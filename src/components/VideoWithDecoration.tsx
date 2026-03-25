@@ -21,7 +21,7 @@ const VideoWithDecoration = ({
     const polygon =
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 229 190" fill="none">
             <path d="M170.508 1.9917L226.516 94.9956L170.508 188H58.3428L2.33398 94.9956L58.3428 1.9917H170.508Z"
-                  stroke="#663B8E" strokeWidth="4"/>
+                  stroke="#CE7606" strokeWidth="4"/>
         </svg>;
 
     const triangle =

@@ -13,10 +13,10 @@ import RelatedCard from "@/components/RelatedCard";
 import {useKeenSlider} from "keen-slider/react";
 
 const initialColors = {
-    base: "#663B8E",
-    hover: "#663B8E",
-    muted: "#663B8E",
-    accent: "#663B8E",
+    base: "#CE7606",
+    hover: "#CE7606",
+    muted: "#CE7606",
+    accent: "#CE7606",
 }
 
 const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {

@@ -9,23 +9,23 @@ const CloudData = () => {
             fill="none"
             viewBox="0 0 128 128"
         >
-            <path fill="#663B8E" d="M51.5 40a2 2 0 100 4H54a2 2 0 100-4h-2.5z"></path>
+            <path fill="#CE7606" d="M51.5 40a2 2 0 100 4H54a2 2 0 100-4h-2.5z"></path>
             <path
-                fill="#663B8E"
+                fill="#CE7606"
                 fillRule="evenodd"
                 d="M47 33a4 4 0 00-4 4v10a4 4 0 004 4h34a4 4 0 004-4V37a4 4 0 00-4-4H47zm0 4h34v10H47V37z"
                 clipRule="evenodd"
             ></path>
-            <path fill="#663B8E" d="M51.5 62a2 2 0 100 4H54a2 2 0 100-4h-2.5z"></path>
+            <path fill="#CE7606" d="M51.5 62a2 2 0 100 4H54a2 2 0 100-4h-2.5z"></path>
             <path
-                fill="#663B8E"
+                fill="#CE7606"
                 fillRule="evenodd"
                 d="M43 59a4 4 0 014-4h34a4 4 0 014 4v10a4 4 0 01-4 4H47a4 4 0 01-4-4V59zm38 0H47v10h34V59z"
                 clipRule="evenodd"
             ></path>
-            <path fill="#663B8E" d="M51.5 84a2 2 0 100 4H54a2 2 0 100-4h-2.5z"></path>
+            <path fill="#CE7606" d="M51.5 84a2 2 0 100 4H54a2 2 0 100-4h-2.5z"></path>
             <path
-                fill="#663B8E"
+                fill="#CE7606"
                 fillRule="evenodd"
                 d="M43 81a4 4 0 014-4h34a4 4 0 014 4v10a4 4 0 01-4 4H47a4 4 0 01-4-4V81zm38 0H47v10h34V81zM121.407 116.161a1.906 1.906 0 00-1.906-1.907h-47.94a7.622 7.622 0 00-5.45-5.449V100a1 1 0 00-1-1h-1.814a1 1 0 00-1 1v8.805a7.62 7.62 0 00-5.45 5.449H8.907a1.907 1.907 0 000 3.814h47.94a7.594 7.594 0 007.357 5.718 7.594 7.594 0 007.356-5.718h47.941a1.906 1.906 0 001.906-1.907zm-57.203 3.814a3.814 3.814 0 11.001-7.629 3.814 3.814 0 01-.001 7.629z"
                 clipRule="evenodd"
