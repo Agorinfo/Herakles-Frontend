@@ -28,7 +28,7 @@ const Faq = ({data, expanded, setExpanded}: {data: any, expanded: false | number
                     />
                 ))}
             </div>
-            <button onClick={handleMore} className="btn btn-accent">{more ? "Voir moins" : "Voir plus"}</button>
+            {data.length > 4 && <button onClick={handleMore} className="btn btn-featured">{more ? "Voir moins" : "Voir plus"}</button>}
         </>
     );
 };
