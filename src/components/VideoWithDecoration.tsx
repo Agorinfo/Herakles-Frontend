@@ -46,13 +46,15 @@ const VideoWithDecoration = ({
 
                         {miniature ?
                             <>
-                                <Image
-                                    className="absolute inset-0 z-10 w-full h-full rounded-lg object-cover"
-                                    src={src}
-                                    alt={alt}
-                                    fill
-                                    sizes="(min-width: 768px) 38.3rem, 100vw"
-                                />
+                                <span className="absolute inset-0 z-10 block">
+                                    <Image
+                                        className="rounded-lg object-cover"
+                                        src={src}
+                                        alt={alt}
+                                        fill
+                                        sizes="(min-width: 768px) 38.3rem, 100vw"
+                                    />
+                                </span>
                                 <button
                                     onClick={() => setMiniature(false)}
                                     aria-label="afficher la vidéo"

@@ -66,14 +66,16 @@ const HeroService = ({icon, title, teaser, heroImg, steps, stepImg, logo}: HeroS
                         <div className="justify-self-end relative px-8 md:px-0">
                             <div
                                 className="relative lg:absolute lg:right-0 p-2 rounded-lg bg-white rotate-[4deg] shadow-featuredTab size-[27rem]">
-                                <Image
-                                    id="service-hero-img"
-                                    className="object-cover object-center p-2"
-                                    src={heroImg ? backUrl + heroImg[0].attributes.url : emptyImg.src}
-                                    alt={heroImg && heroImg[0].attributes.alternativeText ? heroImg[0].attributes.alternativeText : ""}
-                                    fill
-                                    sizes="27rem"
-                                />
+                                <div className="relative w-full h-full">
+                                    <Image
+                                        id="service-hero-img"
+                                        className="object-cover object-center"
+                                        src={heroImg ? backUrl + heroImg[0].attributes.url : emptyImg.src}
+                                        alt={heroImg && heroImg[0].attributes.alternativeText ? heroImg[0].attributes.alternativeText : ""}
+                                        fill
+                                        sizes="27rem"
+                                    />
+                                </div>
                                 {logo.data &&
                                     <Image
                                         className="w-[8rem] h-[4.2rem] rounded-lg absolute top-6 -left-4"
@@ -91,14 +93,16 @@ const HeroService = ({icon, title, teaser, heroImg, steps, stepImg, logo}: HeroS
                                                               className="full-width justify-self-end relative px-8 md:px-0">
                 <div
                     className="relative lg:absolute lg:right-0 p-2 rounded-lg bg-white rotate-[4deg] shadow-featuredTab w-full aspect-square">
-                    <Image
-                        id="service-hero-img"
-                        className="object-cover object-center p-2"
-                        src={heroImg ? backUrl + heroImg[0].attributes.url : emptyImg.src}
-                        alt={heroImg && heroImg[0].attributes.alternativeText ? heroImg[0].attributes.alternativeText : ""}
-                        fill
-                        sizes="100vw"
-                    />
+                    <div className="relative w-full h-full">
+                        <Image
+                            id="service-hero-img"
+                            className="object-cover object-center"
+                            src={heroImg ? backUrl + heroImg[0].attributes.url : emptyImg.src}
+                            alt={heroImg && heroImg[0].attributes.alternativeText ? heroImg[0].attributes.alternativeText : ""}
+                            fill
+                            sizes="100vw"
+                        />
+                    </div>
                     {logo.data &&
                         <Image
                             className="w-[8rem] h-[4.2rem] rounded-lg absolute top-6 -left-4"

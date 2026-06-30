@@ -102,20 +102,22 @@ export default function Slider({images, logo, layout = "square"}: Props) {
                         exit={{opacity: 0}}
                         transition={{duration: 0.6}}
                     >
-                        <Image
-                            key={currentImage?.url || "empty"}
-                            src={
-                                currentImage
-                                    ? currentImage.formats?.small
-                                        ? backUrl + currentImage.formats.small.url
-                                        : backUrl + currentImage.url
-                                    : emptyImg.src
-                            }
-                            alt={currentImage?.alternativeText || ""}
-                            className="w-full h-full object-cover"
-                            fill
-                            sizes={isLandscape ? "(min-width: 1024px) 36rem, 100vw" : "(min-width: 1024px) 28rem, 100vw"}
-                        />
+                        <div className="relative w-full h-full">
+                            <Image
+                                key={currentImage?.url || "empty"}
+                                src={
+                                    currentImage
+                                        ? currentImage.formats?.small
+                                            ? backUrl + currentImage.formats.small.url
+                                            : backUrl + currentImage.url
+                                        : emptyImg.src
+                                }
+                                alt={currentImage?.alternativeText || ""}
+                                className="object-cover"
+                                fill
+                                sizes={isLandscape ? "(min-width: 1024px) 36rem, 100vw" : "(min-width: 1024px) 28rem, 100vw"}
+                            />
+                        </div>
                     </motion.div>
                 </AnimatePresence>
             </div>
