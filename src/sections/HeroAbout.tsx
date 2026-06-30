@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import {useQuery} from "@tanstack/react-query";
 import getAbout from "@/actions/getAbout";
@@ -27,7 +28,7 @@ const HeroAbout = () => {
                 label2={data.heroContent.label2}
                 url2={data.heroContent.url2}
             />
-            <img className="!hidden lg:!grid full-width" src={curve.src} alt=""/>
+            <Image className="!hidden lg:!grid full-width w-full h-auto" src={curve} alt="" priority/>
         </>
     );
 };

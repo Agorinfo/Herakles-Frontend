@@ -1,5 +1,6 @@
 "use client"
 import React, {useState} from 'react';
+import Image from "next/image";
 import {useQuery} from "@tanstack/react-query";
 import getGlobal from "@/actions/getGlobal";
 import Loader, {LoaderButton} from "@/components/Loader";
@@ -89,8 +90,13 @@ const ContactForm = () => {
                 className={`p-8 flex flex-col justify-between items-start lg:border-r lg:border-grayscale-lighter lg:w-[33.333vw] max-w-[32rem] lg:block ${active === "coordonnees" ? "block" : "hidden lg:block"}`}>
                 <div className="">
                     <div className="pb-6 hidden lg:block w-[17.5rem]">
-                        <img className="w-full" src={logo?.data ? backUrl + logo?.data?.attributes.url : emptyImg.src}
-                             alt={logo?.data?.attributes.alternativeText}/>
+                        <Image
+                            className="w-full h-auto"
+                            src={logo?.data ? backUrl + logo?.data?.attributes.url : emptyImg.src}
+                            alt={logo?.data?.attributes.alternativeText || ""}
+                            width={280}
+                            height={112}
+                        />
                     </div>
                     <div className="divide-y">
                         <div className="flex flex-col gap-2 pb-6">

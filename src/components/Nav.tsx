@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import Image from "next/image";
 import {NavItemsType} from "@/utils/types";
 import {ModalButton} from "@/components/Button";
 import Icon from "@/components/icons/Icon";
@@ -90,9 +91,15 @@ const Nav = ({navItems, isOpen, setIsOpen}: NavItemsType) => {
                                             ))}
                                         </div>
                                         <div className="bg-white rounded-lg overflow-hidden flex flex-col">
-                                            <img className="hidden flex-auto object-cover lg:block"
-                                                 src={item.image.data ? backUrl + item.image.data.attributes.url : emptyImg.src}
-                                                 alt={item.image.data ? item.image.data.attributes.alternativeText : ""}/>
+                                            <div className="relative hidden flex-auto min-h-[14rem] lg:block">
+                                                <Image
+                                                    className="object-cover"
+                                                    src={item.image.data ? backUrl + item.image.data.attributes.url : emptyImg.src}
+                                                    alt={item.image.data ? item.image.data.attributes.alternativeText : ""}
+                                                    fill
+                                                    sizes="33vw"
+                                                />
+                                            </div>
                                             {item.url && item.labelButton &&
                                                 <div className="pb-6 lg:p-3 text-center">
                                                     <Link

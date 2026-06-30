@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image";
 import {SolutionCardType} from "@/utils/types";
 import Button from "@/components/Button";
 
@@ -7,10 +8,12 @@ const SolutionCard = ({url, image, alt, category, solution}: SolutionCardType) =
         <div>
             <a href={url}
                className="group mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
-                <img
+                <Image
                     src={image}
-                    loading="lazy" alt={alt}
+                    alt={alt}
                     className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                    width={640}
+                    height={384}
                 />
             </a>
 

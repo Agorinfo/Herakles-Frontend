@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Image from "next/image";
 import Icon from "@/components/icons/Icon";
 import FeaturedCard from "@/components/FeaturedCard";
 import curve from "@/assets/left.png"
@@ -64,18 +65,22 @@ const HeroService = ({icon, title, teaser, heroImg, steps, stepImg, logo}: HeroS
                     { width === "tablet" || width === "desktop" &&
                         <div className="justify-self-end relative px-8 md:px-0">
                             <div
-                                className="lg:absolute lg:right-0 p-2 rounded-lg bg-white rotate-[4deg] shadow-featuredTab size-[27rem]">
-                                <img
+                                className="relative lg:absolute lg:right-0 p-2 rounded-lg bg-white rotate-[4deg] shadow-featuredTab size-[27rem]">
+                                <Image
                                     id="service-hero-img"
-                                    className="object-cover object-center w-full h-full"
+                                    className="object-cover object-center p-2"
                                     src={heroImg ? backUrl + heroImg[0].attributes.url : emptyImg.src}
                                     alt={heroImg && heroImg[0].attributes.alternativeText ? heroImg[0].attributes.alternativeText : ""}
+                                    fill
+                                    sizes="27rem"
                                 />
                                 {logo.data &&
-                                    <img
+                                    <Image
                                         className="w-[8rem] h-[4.2rem] rounded-lg absolute top-6 -left-4"
                                         src={logo.data ? backUrl + logo.data.attributes.url : emptyImg.src}
                                         alt={logo.data ? logo.data.attributes.alternativeText : ""}
+                                        width={128}
+                                        height={67}
                                     />
                                 }
                             </div>
@@ -85,23 +90,27 @@ const HeroService = ({icon, title, teaser, heroImg, steps, stepImg, logo}: HeroS
             {width === "mobile" || width === "tablet" && <div style={{background: `url(${curveMobile.src}) no-repeat top`}}
                                                               className="full-width justify-self-end relative px-8 md:px-0">
                 <div
-                    className="lg:absolute lg:right-0 p-2 rounded-lg bg-white rotate-[4deg] shadow-featuredTab w-full aspect-square">
-                    <img
+                    className="relative lg:absolute lg:right-0 p-2 rounded-lg bg-white rotate-[4deg] shadow-featuredTab w-full aspect-square">
+                    <Image
                         id="service-hero-img"
-                        className="object-cover object-center w-full h-full max-w-[27rem]"
+                        className="object-cover object-center p-2"
                         src={heroImg ? backUrl + heroImg[0].attributes.url : emptyImg.src}
                         alt={heroImg && heroImg[0].attributes.alternativeText ? heroImg[0].attributes.alternativeText : ""}
+                        fill
+                        sizes="100vw"
                     />
                     {logo.data &&
-                        <img
+                        <Image
                             className="w-[8rem] h-[4.2rem] rounded-lg absolute top-6 -left-4"
                             src={logo.data ? backUrl + logo.data.attributes.url : emptyImg.src}
                             alt={logo.data ? logo.data.attributes.alternativeText : ""}
+                            width={128}
+                            height={67}
                         />
                     }
                 </div>
             </div>}
-            { width === "desktop" && <img className="full-width w-full" src={curve.src} alt=""/>}
+            { width === "desktop" && <Image className="full-width w-full h-auto" src={curve} alt="" priority/>}
             <div className="grid grid-cols-1 lg:grid-cols-2 py-12">
                 <div id="service-steps"
                      className="relative flex flex-col gap-14 before:w-px before:h-full before:block before:bg-accent-muted before:absolute before:left-7 before:top-0 before:-z-10 lg:col-start-1 lg:col-end-6 lg:row-start-2 lg:row-end-5">
@@ -117,11 +126,13 @@ const HeroService = ({icon, title, teaser, heroImg, steps, stepImg, logo}: HeroS
                         />
                     ))}
                 </div>
-                <img
+                <Image
                     className="lg:row-start-4 lg:row-end-5 mx-auto max-w-[30.6875rem] max-h-[24rem]"
                     id={"service-steps-img"}
                     src={stepImg.data ? backUrl + stepImg.data.attributes.url : emptyImg.src}
                     alt={stepImg.data ? stepImg.data.attributes.alternativeText : ""}
+                    width={491}
+                    height={384}
                 />
             </div>
         </>

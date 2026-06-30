@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image";
 import emptyImg from "@/assets/empty-img.png";
 import Link from "next/link";
 import {createColorPalette} from "@/lib/createColorPalette";
@@ -24,10 +25,12 @@ const RelatedRessourceCard = ({thumbnail, alt, category, title, date, color, slu
             className="grid grid-cols-3 gap-4 rounded-2xl overflow-hidden border-2"
             style={{borderColor: colors.base}}
         >
-            <img
+            <Image
                 className="w-full h-full object-cover"
                 src={thumbnail ? backUrl + thumbnail : emptyImg.src}
                 alt={alt}
+                width={320}
+                height={240}
             />
             <div className="col-span-2 p-4">
                 <span

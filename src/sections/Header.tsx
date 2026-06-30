@@ -1,5 +1,6 @@
 'use client'
 import React, {useState} from 'react';
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import Button, {ModalButton} from "@/components/Button";
 import {useQuery} from "@tanstack/react-query";
@@ -32,7 +33,16 @@ const Header = () => {
     return (
         <header className="sticky top-0 bg-white z-[999] border-b border-greyscale-lightest shadow-nav">
             <div className="flex items-center justify-between py-6 relative max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0">
-                <Link className="w-[200px]" href="/"><img className="w-full h-full object-contain" src={logo ? backUrl + logo : emptyImg.src} alt={alt}/></Link>
+                <Link className="relative block w-[200px] h-12" href="/">
+                    <Image
+                        className="object-contain"
+                        src={logo ? backUrl + logo : emptyImg.src}
+                        alt={alt || ""}
+                        fill
+                        sizes="200px"
+                        priority
+                    />
+                </Link>
                 <Nav navItems={data.navItems} isOpen={isOpen} setIsOpen={setIsOpen} />
                 <ModalButton label={"Nous contacter"} className="btn btn-accent hidden lg:inline-flex">
                     <ContactForm />

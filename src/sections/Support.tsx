@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import Image from "next/image";
 import Curve from "@/components/Curve";
 import Content from "@/components/Content";
 import {SupportType} from "@/utils/types";
@@ -26,10 +27,12 @@ const Support = () => {
             <Curve/>
             <section className="full-width bg-map pb-12">
                 <div className="grid md:grid-cols-2 gap-[5.729vw] xl:gap-[3.5vw]">
-                    <img
+                    <Image
                         className="w-full h-full object-contain"
                         src={image.data ? backUrl + image.data.attributes.url : emptyImg.src}
                         alt={image.data ? image.data.attributes.alternativeText : ""}
+                        width={640}
+                        height={480}
                     />
                     <Content
                         teaser={teaser}

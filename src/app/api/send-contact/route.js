@@ -1,59 +1,66 @@
-import { NextResponse, NextRequest } from 'next/server'
-const nodemailer = require('nodemailer');
+import {NextResponse} from "next/server";
+const nodemailer = require("nodemailer");
 
-// Handles POST requests to /api
+function escapeHtml(value) {
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 export async function POST(request) {
-    const username = process.env.NEXT_PUBLIC_BURNER_USERNAME;
-    const myEmail = process.env.NEXT_PUBLIC_PERSONAL_EMAIL;
-    const { SMTP_EMAIL, SMTP_PASSWORD, SMTP_HOST, SMTP_PORT, SMTP_PROTOCOLE } = process.env;
-
-    const formData = await request.formData()
-    const name = formData.get('name');
-    const firstname = formData.get('firstname');
-    const company = formData.get('company');
-    const email = formData.get('email');
-    const tel = formData.get('tel');
-    const object = formData.get('object');
-    const message = formData.get('message');
+    const {SMTP_EMAIL, SMTP_PASSWORD} = process.env;
+    const formData = await request.formData();
+    const name = formData.get("name");
+    const firstname = formData.get("firstname");
+    const company = formData.get("company");
+    const email = formData.get("email");
+    const tel = formData.get("tel");
+    const object = formData.get("object");
+    const message = formData.get("message");
+    const safeName = escapeHtml(name);
+    const safeFirstname = escapeHtml(firstname);
+    const safeCompany = escapeHtml(company);
+    const safeEmail = escapeHtml(email);
+    const safeTel = escapeHtml(tel);
+    const safeObject = escapeHtml(object);
+    const safeMessage = escapeHtml(message);
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: "gmail",
         secure: true,
+        disableFileAccess: true,
+        disableUrlAccess: true,
         auth: {
             user: SMTP_EMAIL,
-            pass: "bjda wnbf nvcq msue"
+            pass: SMTP_PASSWORD,
         },
     });
 
     try {
-        const testResult = await transporter.verify();
-        console.log(testResult);
-    } catch (e) {
-        console.error(e);
-    }
-
-    try {
-
-        const mail = await transporter.sendMail({
+        await transporter.verify();
+        await transporter.sendMail({
             from: SMTP_EMAIL,
             to: "j.matha@wesoft.fr",
-            replyTo: email,
-            subject: `Demande en provenance d'edilogic.fr, de : ${firstname} ${name} `,
+            replyTo: String(email || ""),
+            subject: `Demande en provenance d'heracles.fr, de : ${safeFirstname} ${safeName}`,
             html: `
-            <h1>${object}</h1>
-            <p>Name : ${firstname} ${name}</p>
-            <p>Entreprise : ${company}</p>
-            <p>Email : ${email} </p>
-            <p>Téléphone : ${tel}</p>
-            <p>Message : ${message} </p>
+            <h1>${safeObject}</h1>
+            <p>Nom : ${safeFirstname} ${safeName}</p>
+            <p>Entreprise : ${safeCompany}</p>
+            <p>Email : ${safeEmail}</p>
+            <p>Telephone : ${safeTel}</p>
+            <p>Message : ${safeMessage}</p>
             `,
-        })
+            disableFileAccess: true,
+            disableUrlAccess: true,
+        });
 
-        return NextResponse.json({ message: "L'email a été envoyé avec succès" })
-
+        return NextResponse.json({message: "L'email a ete envoye avec succes"});
     } catch (error) {
-        console.log(error)
-        return NextResponse.json({ status: 500, message: "L'email n'a pas pu être envoyé" })
+        console.error(error);
+        return NextResponse.json({message: "L'email n'a pas pu etre envoye"}, {status: 500});
     }
 }

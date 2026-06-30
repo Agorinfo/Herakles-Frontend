@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image";
 import Slider from "@/components/Slider";
 import CallToAction from "@/components/CallToAction";
 import Content from "@/components/Content";
@@ -11,7 +12,7 @@ const Reassurance = ({icon, alt, text, label, url, images, ctaTitle, ctaText, ct
         <>
             <section className="relative pt-28 mt-24 bg-accent-shadow full-width text-white">
                 <span className="absolute left-0 -top-10 md:-top-20 size-20 md:size-40 rounded-full inline-flex items-center justify-center bg-featured-shine shadow-thumb">
-                    <img src={icon ? backUrl + icon : emptyImg.src} alt={alt}/>
+                    <Image src={icon ? backUrl + icon : emptyImg.src} alt={alt} width={90} height={90}/>
                 </span>
                 <div className="">
                     <div className="grid lg:grid-cols-8 items-center gap-[6rem] xl:gap-[2.2vw]">

@@ -4,10 +4,12 @@ export async function sendMail({subject, body}: {
     subject: string,
     body: string
 }) {
-    const {SMTP_EMAIL, SMTP_PASSWORD, FROM_EMAIL, EMAIL, SMTP_HOST,SMTP_PORT,} = process.env;
+    const {SMTP_EMAIL, SMTP_PASSWORD, FROM_EMAIL, EMAIL} = process.env;
     const transport = nodemailer.createTransport({
         service: 'gmail',
         secure: true,
+        disableFileAccess: true,
+        disableUrlAccess: true,
         auth: {
             user: SMTP_EMAIL,
             pass: SMTP_PASSWORD,
@@ -26,7 +28,9 @@ export async function sendMail({subject, body}: {
             from: FROM_EMAIL,
             to: EMAIL,
             subject,
-            html: body
+            html: body,
+            disableFileAccess: true,
+            disableUrlAccess: true,
         })
         console.log(sendResult);
     } catch (e) {

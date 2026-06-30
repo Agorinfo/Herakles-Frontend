@@ -85,10 +85,12 @@ export function Lightbox({
             </button>
 
             {image.width && image.height ? (
-                <img
+                <Image
                     src={image.src}
                     alt={image.alt}
                     onClick={(e) => e.stopPropagation()}
+                    width={image.width}
+                    height={image.height}
                     style={{
                         maxWidth: "90vw",
                         maxHeight: "90vh",
@@ -99,11 +101,12 @@ export function Lightbox({
                     }}
                 />
             ) : (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                     src={image.src}
                     alt={image.alt}
                     onClick={(e) => e.stopPropagation()}
+                    width={1200}
+                    height={800}
                     style={{
                         maxWidth: "90vw",
                         maxHeight: "90vh",
@@ -136,10 +139,12 @@ export function ClickableImage({
 
     return (
         <>
-            <img
+            <Image
                 src={src}
                 alt={alt}
                 className={className}
+                width={width || 1200}
+                height={height || 800}
                 style={{ cursor: "zoom-in", ...style }}
                 onClick={() => open({ src, alt, width, height })}
             />

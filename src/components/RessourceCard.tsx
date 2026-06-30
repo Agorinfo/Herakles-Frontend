@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Image from "next/image";
 import emptyImg from "@/assets/empty-img.png"
 import Link from "next/link";
 import clsx from "clsx";
@@ -48,9 +49,11 @@ const RessourceCard = ({
             className={clsx("rounded-lg bg-white border-2 overflow-hidden flex flex-col")}
             style={{borderColor: colors.border}}
         >
-            <img
+            <Image
                 className="h-[12rem] w-full object-cover"
                 src={src ? src : emptyImg.src} alt={alt ? alt : ""}
+                width={640}
+                height={360}
             />
             <div className="flex flex-col items-start justify-between flex-auto p-4">
                 <span

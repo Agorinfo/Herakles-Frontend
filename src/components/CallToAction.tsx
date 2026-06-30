@@ -1,5 +1,6 @@
 "use client"
 import React, {useState} from 'react';
+import Image from "next/image";
 import Button, {ModalButton} from "@/components/Button";
 import {CallToActionPageType, CallToActionType} from "@/utils/types";
 import ContactForm from "@/components/ContactForm";
@@ -196,15 +197,17 @@ export const CallToActionImage = ({
                         />
                     }
                 </div>
-                <div className={clsx("h-48 sm:h-auto max-h-[25rem] w-full object-cover",
+                <div className={clsx("relative h-48 sm:h-auto max-h-[25rem] w-full object-cover",
                     position === 'image à droite' && "lg:col-span-3",
                     position === 'image à gauche' && "lg:col-span-2"
                 )}
                 >
-                    <img
-                        className="h-full w-full object-cover object-center"
+                    <Image
+                        className="object-cover object-center"
                         src={image?.data ? backUrl + image.data.attributes.url : emptyImg.src}
                         alt={image?.data ? image.data.attributes.alternativeText : ""}
+                        fill
+                        sizes="(min-width: 1024px) 60vw, 100vw"
                     />
                 </div>
             </div>

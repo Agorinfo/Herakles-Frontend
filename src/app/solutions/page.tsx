@@ -10,36 +10,19 @@ import getServices from "@/actions/getServices";
 import ReassuranceArchiveSolution from "@/sections/ReassuranceArchiveSolution";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
+import {buildSeoMetadata} from "@/lib/seo";
 
 export const generateMetadata = async (): Promise<Metadata> => {
-    const {BACK_URL,FRONT_URL} = process.env;
     const global = await getGlobal();
     const metas = global.archiveSolutions.metas
 
-    return {
-        metadataBase: new URL(FRONT_URL + "/solutions"),
-        title: metas?.meta_title || "Solutions | Edilogic",
-        description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-        openGraph: {
-            title: metas?.meta_title || "Solutions | Edilogic",
-            siteName: metas?.meta_title || "Solutions | Edilogic",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/solutions",
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            site: FRONT_URL + "/solutions",
-            title: metas?.meta_title || "Solutions | Edilogic",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        icons: {
-            icon: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            apple: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            shortcut: `${BACK_URL}${global?.favicon.data.attributes.url}`
-        }
-    }
+    return buildSeoMetadata({
+        metas,
+        global,
+        path: "/solutions",
+        fallbackTitle: "Solutions | Herakles",
+        fallbackDescription: "Decouvrez les solutions logicielles Herakles pour piloter vos activites metier.",
+    });
 };
 
 const Solutions = async () => {

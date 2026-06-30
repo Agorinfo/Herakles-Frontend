@@ -1,5 +1,6 @@
 'use client'
 import {useState} from "react";
+import Image from "next/image";
 import {motion, AnimatePresence} from "framer-motion";
 import {ArrowLeft, ArrowRight} from "@phosphor-icons/react";
 import clsx from "clsx";
@@ -84,10 +85,12 @@ export default function Slider({images, logo, layout = "square"}: Props) {
             >
                 {logo && (
                     <div className="absolute top-6 left-4 w-24 h-10 z-20">
-                        <img
+                        <Image
                             src={backUrl + logo.data.attributes.url}
                             alt={logo.data.attributes.alternativeText}
                             className="w-full h-full object-contain bg-white"
+                            width={96}
+                            height={40}
                         />
                     </div>
                 )}
@@ -99,9 +102,8 @@ export default function Slider({images, logo, layout = "square"}: Props) {
                         exit={{opacity: 0}}
                         transition={{duration: 0.6}}
                     >
-                        <img
+                        <Image
                             key={currentImage?.url || "empty"}
-
                             src={
                                 currentImage
                                     ? currentImage.formats?.small
@@ -111,6 +113,8 @@ export default function Slider({images, logo, layout = "square"}: Props) {
                             }
                             alt={currentImage?.alternativeText || ""}
                             className="w-full h-full object-cover"
+                            fill
+                            sizes={isLandscape ? "(min-width: 1024px) 36rem, 100vw" : "(min-width: 1024px) 28rem, 100vw"}
                         />
                     </motion.div>
                 </AnimatePresence>

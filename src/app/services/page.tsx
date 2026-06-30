@@ -10,36 +10,19 @@ import ReassuranceArchiveService from "@/sections/ReassuranceArchiveService";
 import HeroArchiveServices from "@/sections/HeroArchiveServices";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
+import {buildSeoMetadata} from "@/lib/seo";
 
 export const generateMetadata = async (): Promise<Metadata> => {
-    const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
     const metas = global.archiveServices.metas
 
-    return {
-        metadataBase: new URL(FRONT_URL + "/services"),
-        title: metas?.meta_title || "Services | Edilogic",
-        description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-        openGraph: {
-            title: metas?.meta_title || "Services | Edilogic",
-            siteName: metas?.meta_title || "Services | Edilogic",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/services",
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            site: FRONT_URL + "/services",
-            title: metas?.meta_title || "Services | Edilogic",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        icons: {
-            icon: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            apple: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            shortcut: `${BACK_URL}${global?.favicon.data.attributes.url}`
-        }
-    }
+    return buildSeoMetadata({
+        metas,
+        global,
+        path: "/services",
+        fallbackTitle: "Services | Herakles",
+        fallbackDescription: "Services Herakles pour integrer, deployer et faire evoluer vos solutions logicielles metier.",
+    });
 };
 
 const Services = async () => {

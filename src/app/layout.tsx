@@ -12,6 +12,8 @@ import {Toaster} from "react-hot-toast";
 import Modal from "@/components/Modal";
 import CookieConsent from "@/components/CookieConsent";
 import Maintenance from "@/components/Maintenance";
+import JsonLd from "@/components/JsonLd";
+import {buildOrganizationJsonLd, buildWebSiteJsonLd} from "@/lib/seo";
 
 const openSans = Open_Sans({subsets: ["latin"]});
 
@@ -50,6 +52,7 @@ export default async function RootLayout({
         <html lang="fr" className="scroll-smooth overflow-x-clip">
         <body className={`${openSans.className} overflow-x-clip`}>
         <CookieConsent/>
+        <JsonLd data={[buildOrganizationJsonLd(global), buildWebSiteJsonLd(global)]}/>
         <UseReactQuery>
             <HydrationBoundary state={dehydrate(queryClient)}>
                 <div id="modal-root"></div>

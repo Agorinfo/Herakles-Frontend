@@ -1,5 +1,6 @@
 "use client";
 import React, {useState} from 'react';
+import Image from "next/image";
 import Slider from "@/components/Slider";
 import CallToAction from "@/components/CallToAction";
 import {SectionFaqType} from "@/utils/types";
@@ -33,10 +34,12 @@ const SectionFaq = () => {
         <>
             <section id="faq" className="relative pt-28 mt-24 bg-accent-shadow full-width text-white">
                 <span className="absolute left-0 -top-10 md:-top-20 size-20 md:size-40 rounded-full inline-flex items-center justify-center bg-featured-shine shadow-thumb">
-                    <img
+                    <Image
                         className="w-full h-full max-w-[45px] md:max-w-[90px]"
                         src={global.data.favicon.data.attributes.url ? backUrl + global.data.favicon.data.attributes.url : emptyImg.src}
                         alt={global.data.favicon.data.attributes.alternativeText}
+                        width={90}
+                        height={90}
                     />
                 </span>
                 <div className="">

@@ -1,37 +1,72 @@
-import {MetadataRoute} from 'next';
+import {MetadataRoute} from "next";
 import getServices from "@/actions/getServices";
 import getSolutions from "@/actions/getSolutions";
-import getRessources from "@/actions/getRessources";
+import getAllRessources from "@/actions/getAllRessources";
+import {getCanonicalUrl} from "@/lib/seo";
+
+const now = new Date();
+
+function getLastModified(item: {attributes?: {updatedAt?: string; publishedAt?: string}}) {
+    return item.attributes?.updatedAt || item.attributes?.publishedAt || now;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_FRONT_URL || 'http://localhost:3000';
+    const staticPages: MetadataRoute.Sitemap = [
+        {
+            url: getCanonicalUrl("/"),
+            lastModified: now,
+            changeFrequency: "weekly",
+            priority: 1,
+        },
+        {
+            url: getCanonicalUrl("/qui-sommes-nous"),
+            lastModified: now,
+            changeFrequency: "monthly",
+            priority: 0.7,
+        },
+        {
+            url: getCanonicalUrl("/services"),
+            lastModified: now,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: getCanonicalUrl("/solutions"),
+            lastModified: now,
+            changeFrequency: "weekly",
+            priority: 0.9,
+        },
+        {
+            url: getCanonicalUrl("/ressources"),
+            lastModified: now,
+            changeFrequency: "weekly",
+            priority: 0.8,
+        },
+    ];
 
-    // Pages statiques
-    const staticPages = ['', 'qui-sommes-nous', 'mentions-legales', 'services', 'solutions', 'ressources'].map(
-        (page) => ({
-            url: `${baseUrl}/${page}`,
-            lastModified: new Date().toISOString(),
-        })
-    );
-
-    // Pages dynamiques (remplacez cette partie par votre logique pour récupérer les slugs)
     const serviceSlugs = await getServices();
     const solutionSlugs = await getSolutions();
-    const ressourceSlugs = await getRessources();
+    const ressourceSlugs = await getAllRessources();
 
-    const dynamicServicePages = serviceSlugs.map((data: { attributes: { slug: string } }) => ({
-        url: `${baseUrl}/services/${data.attributes.slug}`,
-        lastModified: new Date().toISOString(),
+    const dynamicServicePages = serviceSlugs.map((data: { attributes: { slug: string; updatedAt?: string; publishedAt?: string } }) => ({
+        url: getCanonicalUrl(`/services/${data.attributes.slug}`),
+        lastModified: getLastModified(data),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
     }));
 
-    const dynamicSolutionPages = solutionSlugs.map((data: { attributes: { slug: string } }) => ({
-        url: `${baseUrl}/solutions/${data.attributes.slug}`,
-        lastModified: new Date().toISOString(),
+    const dynamicSolutionPages = solutionSlugs.map((data: { attributes: { slug: string; updatedAt?: string; publishedAt?: string } }) => ({
+        url: getCanonicalUrl(`/solutions/${data.attributes.slug}`),
+        lastModified: getLastModified(data),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
     }));
 
-    const dynamicRessourcePages = ressourceSlugs.data.map((data: { attributes: { slug: string } }) => ({
-        url: `${baseUrl}/ressources/${data.attributes.slug}`,
-        lastModified: new Date().toISOString(),
+    const dynamicRessourcePages = ressourceSlugs.data.map((data: { attributes: { slug: string; updatedAt?: string; publishedAt?: string } }) => ({
+        url: getCanonicalUrl(`/ressources/${data.attributes.slug}`),
+        lastModified: getLastModified(data),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
     }));
 
     return [

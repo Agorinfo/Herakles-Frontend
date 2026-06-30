@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Image from "next/image";
 import {ModalButton} from "@/components/Button";
 import ContactForm from "@/components/ContactForm";
 import Content from "@/components/Content";
@@ -38,10 +39,12 @@ const HeroArchiveService = ({teaser, text, label, url, modules,}: HeroArchiveSer
                 >
                     {!active &&
                         <>
-                            <img
-                                className="absolute inset-0 w-full h-full"
+                            <Image
+                                className="object-cover"
                                 src="/Fond_Edilogic.png"
                                 alt=""
+                                fill
+                                sizes="100vw"
                             />
                             <div className="relative z-10">
                                 <p className="text-h5 font-bold">{teaser}</p>

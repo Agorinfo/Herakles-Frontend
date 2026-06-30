@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import Image from "next/image";
 import {useQuery} from "@tanstack/react-query";
 import getHome from "@/actions/getHome";
 import Loader from "@/components/Loader";
@@ -31,9 +32,14 @@ const CtaHome = () => {
                         url={url}
                     />
                 </div>
-                <div className="lg:col-span-3 h-48 sm:h-auto md:h-80 w-full object-cover">
-                    <img className="h-full w-full object-cover object-center" src={image.data ? backUrl + image.data.attributes.url : emptyImg.src}
-                         alt={image.data ? image.data.attributes.alternativeText : ""}/>
+                <div className="relative lg:col-span-3 h-48 sm:h-auto md:h-80 w-full object-cover">
+                    <Image
+                        className="object-cover object-center"
+                        src={image.data ? backUrl + image.data.attributes.url : emptyImg.src}
+                        alt={image.data ? image.data.attributes.alternativeText : ""}
+                        fill
+                        sizes="(min-width: 1024px) 60vw, 100vw"
+                    />
                 </div>
             </div>
         </section>

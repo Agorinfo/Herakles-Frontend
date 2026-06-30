@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Image from "next/image";
 import Button, {ModalButton} from "@/components/Button";
 import SidebarCard from "@/components/SidebarCard";
 import Modal from "@/components/Modal";
@@ -66,10 +67,12 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                 >
                     {!active &&
                         <>
-                            <img
-                                className="absolute inset-0 w-full h-full "
+                            <Image
+                                className="object-cover"
                                 src="/Fond_Edilogic.png"
                                 alt=""
+                                fill
+                                sizes="100vw"
                             />
                             <div className="relative z-10">
                                 <p className="text-h5 font-bold">{teaser}</p>
@@ -96,10 +99,12 @@ const HeroArchive = ({teaser, text, label, url, modules,}: HeroArchiveType) => {
                                     className="w-full flex flex-col justify-between h-full lg:justify-center"
                                 >
                                     {heroArchive.logo &&
-                                        <img
+                                        <Image
                                             src={backUrl + heroArchive.logo.data?.attributes.url}
                                             alt={heroArchive.logo.data?.attributes.alternativeText}
                                             className="lg:hidden w-32 h-12 rounded-lg shadow-slide object-cover mb-4"
+                                            width={128}
+                                            height={48}
                                         />
                                     }
                                     <div className="relative z-10 w-full">

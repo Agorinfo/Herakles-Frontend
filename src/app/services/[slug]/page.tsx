@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Loader from "@/components/Loader";
 import HeroService from "@/components/HeroService";
 import {CallToActionImage, CallToActionNewsletter} from "@/components/CallToAction";
@@ -6,6 +6,7 @@ import TestimonialsPage from "@/sections/TestimonialsPage";
 import getService from "@/actions/getService";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
+import {buildSeoMetadata} from "@/lib/seo";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -13,42 +14,26 @@ type Props = {
 
 export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
     const {slug} = await params;
-    const {BACK_URL, FRONT_URL} = process.env;
     const global = await getGlobal();
     const service = await getService(slug);
-    const metas = service[0].attributes.metas
+    const attributes = service[0]?.attributes;
 
-    return {
-        metadataBase: new URL(FRONT_URL + "/" + slug),
-        title: metas.meta_title || "Edilogic, éditeur de solution logicielles métier",
-        description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-        openGraph: {
-            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/" + slug,
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            site: FRONT_URL + "/" + slug,
-            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        icons: {
-            icon: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            apple: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            shortcut: `${BACK_URL}${global?.favicon.data.attributes.url}`
-        }
-    }
+    if (!attributes) return {};
+
+    return buildSeoMetadata({
+        metas: attributes.metas,
+        global,
+        path: `/services/${slug}`,
+        fallbackTitle: `${attributes.name || "Service"} | Herakles`,
+        fallbackDescription: attributes.shortDescription || "Service Herakles pour vos solutions logicielles metier.",
+    });
 };
 
 const Service = async ({params}: Props) => {
     const {slug} = await params;
     const data = await getService(slug);
 
-    if(!data) return <Loader />;
+    if (!data) return <Loader/>;
 
     return (
         <>
@@ -71,8 +56,9 @@ const Service = async ({params}: Props) => {
                 label={data[0].attributes.cta.label}
                 url={data[0].attributes.cta.url}
             />}
-            {data[0].attributes.testimonial.length > 0 && <TestimonialsPage testimonials={data[0].attributes.testimonial}/>}
-            <CallToActionNewsletter />
+            {data[0].attributes.testimonial.length > 0 &&
+                <TestimonialsPage testimonials={data[0].attributes.testimonial}/>}
+            <CallToActionNewsletter/>
         </>
     );
 };

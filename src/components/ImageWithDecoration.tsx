@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Image from "next/image";
 import clsx from "clsx";
 import emptyImg from "@/assets/empty-img.png"
 
@@ -104,9 +105,13 @@ const ImageWithDecoration = ({
                 )}
                 >
                     <div className="relative w-full h-full flex items-center justify-center">
-                        <img
+                        <Image
                             className={`relative max-w-[34rem] w-full ${layout === "landscape" ? "aspect-[1.3/1]" : "aspect-square"} object-cover object-center rounded-xl bg-white border border-grayscale-lighter`}
-                            src={src ? src : emptyImg.src} alt={alt ? alt : ""}/>
+                            src={src ? src : emptyImg.src}
+                            alt={alt ? alt : ""}
+                            width={544}
+                            height={layout === "landscape" ? 418 : 544}
+                        />
                         {legend &&
                             <>
                                 <span className="absolute inset-0 bg-legend" />

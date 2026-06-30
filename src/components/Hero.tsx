@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import Image from "next/image";
 import Slider from "@/components/Slider";
 import Content from "@/components/Content";
 import {HeroHomeType} from "@/utils/types";
@@ -36,7 +37,7 @@ const Hero = ({images, teaser, content, label1, url1, label2, url2, background}:
                                 <div className="w-full h-full relative z-10">
                                     <div
                                         className="relative z-10 bg-white p-3 max-w-[27rem] w-full lg:w-[28.125vw] aspect-square shadow-slide rounded-lg">
-                                        <img className="w-full h-full object-cover" src={emptyImg.src} alt=""/>
+                                        <Image className="object-cover" src={emptyImg} alt="" fill sizes="28rem"/>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +59,7 @@ const Hero = ({images, teaser, content, label1, url1, label2, url2, background}:
                             <div className="w-full h-full relative z-10">
                                 <div
                                     className="relative z-10 bg-white p-3 max-w-[27rem] w-full lg:w-[28.125vw] aspect-square shadow-slide rounded-lg">
-                                    <img className="w-full h-full object-cover" src={emptyImg.src} alt=""/>
+                                    <Image className="object-cover" src={emptyImg} alt="" fill sizes="28rem"/>
                                 </div>
                             </div>
                         </div>

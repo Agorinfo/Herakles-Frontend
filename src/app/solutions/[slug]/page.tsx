@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {notFound} from "next/navigation";
 import HeroPage from "@/components/HeroPage";
 import {createColorPalette} from "@/lib/createColorPalette";
@@ -11,6 +11,7 @@ import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 import getSolution from "@/actions/getSolution";
 import emptyImg from "@/assets/empty-img.png"
+import {buildSeoMetadata} from "@/lib/seo";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -19,7 +20,7 @@ type Props = {
 async function getData(slug: string) {
     const {API_URL, API_KEY} = process.env
     const res = await fetch(`${API_URL}/solutions?populate=brandImg,%20heroArchive.logo,%20heroArchive.informationCard.image,%20heroArchive.background,heroArchive.moduleList,%20reassurance.card,%20HeroPage.images,%20HeroPage.logo,%20HeroPage.content,%20cta,%20FeaturesReleased.details,%20featuresReleasedImg,%20newsletter,features,modules.features.activities,modules.features.details,%20modules.features.activities,%20solutionComp&filters%5Bslug%5D%5B%24eq%5D=${slug}`, {
-        cache: 'no-store',
+        cache: "no-store",
         headers: {
             Authorization: `Bearer ${API_KEY}`
         }
@@ -34,35 +35,19 @@ async function getData(slug: string) {
 
 export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
     const {slug} = await params;
-    const {BACK_URL, FRONT_URL} = process.env;
     const solution = await getSolution(slug)
     const global = await getGlobal();
-    const metas = solution[0].attributes.metas
+    const attributes = solution[0]?.attributes;
 
-    return {
-        metadataBase: new URL(FRONT_URL + "/" + slug),
-        title: metas.meta_title || "Edilogic, éditeur de solution logicielles métier",
-        description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-        openGraph: {
-            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            siteName: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            url: FRONT_URL + "/" + slug,
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            site: FRONT_URL + "/" + slug,
-            title: metas?.meta_title || "Edilogic, éditeur de solution logicielles métier",
-            description: metas?.meta_description || "Solutions logicielles de gestion : Edilogic",
-            images: [`${BACK_URL}${metas?.shareImage?.data?.attributes.url}` || ""],
-        },
-        icons: {
-            icon: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            apple: `${BACK_URL}${global?.favicon.data.attributes.url}`,
-            shortcut: `${BACK_URL}${global?.favicon.data.attributes.url}`
-        }
-    }
+    if (!attributes) return {};
+
+    return buildSeoMetadata({
+        metas: attributes.metas,
+        global,
+        path: `/solutions/${slug}`,
+        fallbackTitle: `${attributes.name || "Solution"} | Herakles`,
+        fallbackDescription: attributes.shortDescription || "Solution logicielle metier Herakles.",
+    });
 };
 
 const Solution = async ({params}: Props) => {
@@ -104,7 +89,7 @@ const Solution = async ({params}: Props) => {
             <ReassuranceSolution data={data[0].attributes.reassurance} colors={colors}/>
             {data[0].attributes.solutionComp.length ?
                 <RelatedServices
-                    title="En complément"
+                    title="En complement"
                     solutions={data[0].attributes.solutionComp.map((solution: any) => solution.solution)}/>
                 :
                 null

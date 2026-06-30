@@ -1,5 +1,6 @@
 "use client"
 import React, {useEffect, useState} from 'react';
+import Image from "next/image";
 import Cookies from 'js-cookie';
 import img from "../../public/cookie-consent-img.png"
 import {initGoogleAnalytics} from "@/utils/analytic";
@@ -68,9 +69,11 @@ const CookieConsent: React.FC = () => {
 
     return (
         <div className={`fixed bottom-4 left-4 p-6 rounded-xl z-50 ${isVisible ? "bg-white" : "bg-transparent"}`}>
-            <img
+            <Image
                 className={`${isVisible ? "size-32 -top-16" : "size-12 top-0 left-0"} absolute  right-4`}
-                src={img.src} alt="Gestion des cookies"
+                src={img} alt="Gestion des cookies"
+                width={128}
+                height={128}
                 onClick={handleManageCookies}
             />
             {isVisible && (
