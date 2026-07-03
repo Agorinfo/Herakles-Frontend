@@ -39,7 +39,7 @@ type BuildSeoMetadataOptions = {
 };
 
 const DEFAULT_SITE_URL = "http://localhost:3000";
-const DEFAULT_SITE_NAME = "Herakles";
+const DEFAULT_SITE_NAME = "Edilogic";
 
 export function getSiteUrl() {
     return stripTrailingSlash(

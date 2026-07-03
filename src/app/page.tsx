@@ -20,7 +20,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
         metas: home.metas,
         global,
         path: "/",
-        fallbackTitle: "Herakles, editeur de solutions logicielles metier",
+        fallbackTitle: "Edilogic, editeur de solutions logicielles metier",
         fallbackDescription: "Solutions logicielles de gestion pour accompagner les entreprises dans leurs operations metier.",
     });
 };

@@ -6,6 +6,7 @@ import getRessource from "@/actions/getRessource";
 import HeroRessource from "@/components/HeroRessource";
 import RessourceContent from "@/components/RessourceContent";
 import {buildSeoMetadata} from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -23,8 +24,8 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
         metas: attributes.metas,
         global,
         path: `/ressources/${slug}`,
-        fallbackTitle: attributes.title || "Ressource Herakles",
-        fallbackDescription: attributes.shortDescription || "Ressource Herakles sur les solutions logicielles metier.",
+        fallbackTitle: attributes.title || "Ressource Edilogic",
+        fallbackDescription: attributes.shortDescription || "Ressource Edilogic sur les solutions logicielles metier.",
         fallbackImage: attributes.featuredImage,
         type: "article",
         publishedTime: attributes.publishedAt,
@@ -35,15 +36,26 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
 const Ressource = async ({params}: Props) => {
     const {slug} = await params;
     const queryClient = new QueryClient()
+    const ressource = await getRessource(slug);
+    const attributes = ressource[0]?.attributes;
+
     await queryClient.prefetchQuery({
         queryKey: ["ressource", slug],
-        queryFn: () => getRessource(slug),
+        queryFn: () => ressource,
     })
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            <HeroRessource/>
-            <RessourceContent/>
-        </HydrationBoundary>
+        <>
+            <Breadcrumbs
+                items={[
+                    {label: "Ressources", href: "/ressources"},
+                    {label: attributes?.title || "Ressource", href: `/ressources/${slug}`},
+                ]}
+            />
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <HeroRessource/>
+                <RessourceContent/>
+            </HydrationBoundary>
+        </>
     );
 };
 

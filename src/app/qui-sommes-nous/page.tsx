@@ -11,6 +11,7 @@ import getGlobal from "@/actions/getGlobal";
 import CtaAbout from "@/sections/CtaAbout";
 import StepAbout from "@/sections/StepAbout";
 import {buildSeoMetadata} from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     const about = await getAbout();
@@ -20,8 +21,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
         metas: about.metas,
         global,
         path: "/qui-sommes-nous",
-        fallbackTitle: "Qui sommes-nous | Herakles",
-        fallbackDescription: "Decouvrez Herakles, editeur de solutions logicielles metier.",
+        fallbackTitle: "Qui sommes-nous | Edilogic",
+        fallbackDescription: "Decouvrez Edilogic, editeur de solutions logicielles metier.",
     });
 };
 
@@ -33,15 +34,18 @@ const About = async () => {
     })
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            <HeroAbout/>
-            <Expertises/>
-            <Story/>
-            <TestimonialsAbout/>
-            <StepAbout/>
-            <CtaAbout/>
-            <CallToActionNewsletter/>
-        </HydrationBoundary>
+        <>
+            <Breadcrumbs items={[{label: "Qui sommes-nous", href: "/qui-sommes-nous"}]}/>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <HeroAbout/>
+                <Expertises/>
+                <Story/>
+                <TestimonialsAbout/>
+                <StepAbout/>
+                <CtaAbout/>
+                <CallToActionNewsletter/>
+            </HydrationBoundary>
+        </>
     );
 };
 

@@ -7,6 +7,7 @@ import getService from "@/actions/getService";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 import {buildSeoMetadata} from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -24,40 +25,47 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
         metas: attributes.metas,
         global,
         path: `/services/${slug}`,
-        fallbackTitle: `${attributes.name || "Service"} | Herakles`,
-        fallbackDescription: attributes.shortDescription || "Service Herakles pour vos solutions logicielles metier.",
+        fallbackTitle: `${attributes.name || "Service"} | Edilogic`,
+        fallbackDescription: attributes.shortDescription || "Service Edilogic pour vos solutions logicielles metier.",
     });
 };
 
 const Service = async ({params}: Props) => {
     const {slug} = await params;
     const data = await getService(slug);
+    const attributes = data?.[0]?.attributes;
 
-    if (!data) return <Loader/>;
+    if (!attributes) return <Loader/>;
 
     return (
         <>
-            <HeroService
-                title={data[0].attributes.hero.title}
-                icon={data[0].attributes.hero.icon}
-                teaser={data[0].attributes.hero.teaser}
-                steps={data[0].attributes.step}
-                heroImg={data[0].attributes.hero.images.data}
-                stepImg={data[0].attributes.stepImg}
-                logo={data[0].attributes.hero.logo}
+            <Breadcrumbs
+                items={[
+                    {label: "Services", href: "/services"},
+                    {label: attributes.name || attributes.hero.title || "Service", href: `/services/${slug}`},
+                ]}
             />
-            {data[0].attributes.cta && <CallToActionImage
-                document={data[0].attributes.cta.document?.data?.attributes.url}
-                title={data[0].attributes.cta.title}
-                text={data[0].attributes.cta.text}
-                image={data[0].attributes.cta.image}
-                color={data[0].attributes.cta.background}
-                position={data[0].attributes.cta.position}
-                label={data[0].attributes.cta.label}
-                url={data[0].attributes.cta.url}
+            <HeroService
+                title={attributes.hero.title}
+                icon={attributes.hero.icon}
+                teaser={attributes.hero.teaser}
+                steps={attributes.step}
+                heroImg={attributes.hero.images.data}
+                stepImg={attributes.stepImg}
+                logo={attributes.hero.logo}
+            />
+            {attributes.cta && <CallToActionImage
+                document={attributes.cta.document?.data?.attributes.url}
+                title={attributes.cta.title}
+                text={attributes.cta.text}
+                image={attributes.cta.image}
+                color={attributes.cta.background}
+                position={attributes.cta.position}
+                label={attributes.cta.label}
+                url={attributes.cta.url}
             />}
-            {data[0].attributes.testimonial.length > 0 &&
-                <TestimonialsPage testimonials={data[0].attributes.testimonial}/>}
+            {attributes.testimonial.length > 0 &&
+                <TestimonialsPage testimonials={attributes.testimonial}/>}
             <CallToActionNewsletter/>
         </>
     );

@@ -9,6 +9,7 @@ import getFaq from "@/actions/getFaq";
 import SectionFaq from "@/components/SectionFaq";
 import getAllRessources from "@/actions/getAllRessources";
 import {buildSeoMetadata} from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     const global = await getGlobal();
@@ -18,7 +19,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
         metas,
         global,
         path: "/ressources",
-        fallbackTitle: "Ressources | Herakles",
+        fallbackTitle: "Ressources | Edilogic",
         fallbackDescription: "Articles, guides et ressources pour mieux piloter vos solutions logicielles metier.",
     });
 };
@@ -46,11 +47,14 @@ const Ressources = async () => {
     })
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            <HeroRessources/>
-            <RessourceGridItems/>
-            <SectionFaq />
-        </HydrationBoundary>
+        <>
+            <Breadcrumbs items={[{label: "Ressources", href: "/ressources"}]}/>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <HeroRessources/>
+                <RessourceGridItems/>
+                <SectionFaq />
+            </HydrationBoundary>
+        </>
     );
 };
 

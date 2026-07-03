@@ -11,6 +11,7 @@ import HeroArchiveServices from "@/sections/HeroArchiveServices";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 import {buildSeoMetadata} from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     const global = await getGlobal();
@@ -20,8 +21,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
         metas,
         global,
         path: "/services",
-        fallbackTitle: "Services | Herakles",
-        fallbackDescription: "Services Herakles pour integrer, deployer et faire evoluer vos solutions logicielles metier.",
+        fallbackTitle: "Services | Edilogic",
+        fallbackDescription: "Services Edilogic pour integrer, deployer et faire evoluer vos solutions logicielles metier.",
     });
 };
 
@@ -41,15 +42,18 @@ const Services = async () => {
     });
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            <HeroArchiveServices />
-            <Strengths />
-            <CallToActionNewsletter />
-            <div className="">
-                <SolutionList />
-            </div>
-            <ReassuranceArchiveService />
-        </HydrationBoundary>
+        <>
+            <Breadcrumbs items={[{label: "Services", href: "/services"}]}/>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <HeroArchiveServices />
+                <Strengths />
+                <CallToActionNewsletter />
+                <div className="">
+                    <SolutionList />
+                </div>
+                <ReassuranceArchiveService />
+            </HydrationBoundary>
+        </>
     );
 };
 

@@ -11,6 +11,7 @@ import ReassuranceArchiveSolution from "@/sections/ReassuranceArchiveSolution";
 import type {Metadata} from "next";
 import getGlobal from "@/actions/getGlobal";
 import {buildSeoMetadata} from "@/lib/seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     const global = await getGlobal();
@@ -20,8 +21,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
         metas,
         global,
         path: "/solutions",
-        fallbackTitle: "Solutions | Herakles",
-        fallbackDescription: "Decouvrez les solutions logicielles Herakles pour piloter vos activites metier.",
+        fallbackTitle: "Solutions | Edilogic",
+        fallbackDescription: "Decouvrez les solutions logicielles Edilogic pour piloter vos activites metier.",
     });
 };
 
@@ -41,15 +42,18 @@ const Solutions = async () => {
     });
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            <HeroArchiveSolutions />
-            <Strengths />
-            <CallToActionNewsletter />
-            <div className="">
-                <ServiceList />
-            </div>
-            <ReassuranceArchiveSolution />
-        </HydrationBoundary>
+        <>
+            <Breadcrumbs items={[{label: "Solutions", href: "/solutions"}]}/>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <HeroArchiveSolutions />
+                <Strengths />
+                <CallToActionNewsletter />
+                <div className="">
+                    <ServiceList />
+                </div>
+                <ReassuranceArchiveSolution />
+            </HydrationBoundary>
+        </>
     );
 };
 

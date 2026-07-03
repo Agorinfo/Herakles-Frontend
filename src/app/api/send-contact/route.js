@@ -45,7 +45,7 @@ export async function POST(request) {
             from: SMTP_EMAIL,
             to: "j.matha@wesoft.fr",
             replyTo: String(email || ""),
-            subject: `Demande en provenance d'heracles.fr, de : ${safeFirstname} ${safeName}`,
+            subject: `Demande en provenance d'edilogic.fr, de : ${safeFirstname} ${safeName}`,
             html: `
             <h1>${safeObject}</h1>
             <p>Nom : ${safeFirstname} ${safeName}</p>
