@@ -15,7 +15,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     const global = await getGlobal();
-    const metas = global.archiveSolutions.metas
+    const metas = global.archiveSolutions?.metas;
 
     return buildSeoMetadata({
         metas,

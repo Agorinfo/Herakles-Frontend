@@ -17,6 +17,7 @@ type StrapiImage = {
 export type SeoMeta = {
     meta_title?: string | null;
     meta_description?: string | null;
+    canonicalUrl?: string | null;
     shareImage?: StrapiImage | null;
 };
 
@@ -62,6 +63,13 @@ export function getCanonicalUrl(path = "/") {
     return `${getSiteUrl()}${normalizePath(path)}`;
 }
 
+function resolveCanonicalUrl(canonicalUrl?: string | null, path = "/") {
+    if (!canonicalUrl) return getCanonicalUrl(path);
+    if (/^https?:\/\//i.test(canonicalUrl)) return canonicalUrl;
+
+    return getCanonicalUrl(canonicalUrl);
+}
+
 export function resolveStrapiMediaUrl(image?: StrapiImage | null) {
     const url = image?.data?.attributes?.url;
 
@@ -86,7 +94,7 @@ export function buildSeoMetadata({
                                  }: BuildSeoMetadataOptions): Metadata {
     const title = metas?.meta_title || fallbackTitle;
     const description = metas?.meta_description || fallbackDescription;
-    const canonical = getCanonicalUrl(path);
+    const canonical = resolveCanonicalUrl(metas?.canonicalUrl, path);
     const siteName = global?.siteName || DEFAULT_SITE_NAME;
     const shareImageUrl = resolveStrapiMediaUrl(metas?.shareImage) || resolveStrapiMediaUrl(fallbackImage);
     const faviconUrl = resolveStrapiMediaUrl(global?.favicon);
