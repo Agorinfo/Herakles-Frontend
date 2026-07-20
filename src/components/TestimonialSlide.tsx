@@ -3,8 +3,8 @@ import React, {useState} from "react";
 import {useKeenSlider} from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import TestimonialCard from "@/components/TestimonialCard";
-import {ArrowLeft, ArrowRight} from "@phosphor-icons/react";
-import {TestimonialFetchType, TestimonialType} from "@/utils/types";
+import { ArrowLeftIcon, ArrowRightIcon} from "@phosphor-icons/react";
+import {TestimonialFetchType} from "@/utils/types";
 import emptyImg from "@/assets/empty-img.png"
 
 const TestimonialSlide = ({testimonials}: TestimonialFetchType) => {
@@ -46,14 +46,14 @@ const TestimonialSlide = ({testimonials}: TestimonialFetchType) => {
                         </div>
                         {loaded && instanceRef.current && (
                             <>
-                                <ArrowLeft
+                                <ArrowLeftIcon
                                     className="absolute top-1/2 left-0 -translate-y-1/2 z-40 size-12 text-featured"
                                     size={48}
                                     onClick={(e: any) =>
                                         e.stopPropagation() || instanceRef.current?.prev()
                                     }
                                 />
-                                <ArrowRight
+                                <ArrowRightIcon
                                     className="absolute top-1/2 right-0 -translate-y-1/2 z-40 size-12 text-featured"
                                     size={48}
                                     onClick={(e: any) =>
@@ -77,7 +77,7 @@ const TestimonialSlide = ({testimonials}: TestimonialFetchType) => {
                                             }}
                                             className={"inline-flex justify-center items-center rounded-full p-2 transition-background duration-500" + (currentSlide === idx ? " bg-accent-shine" : "")}
                                         >
-                                            <span className={"size-2 rounded-full bg-accent"}></span>
+                                            <span className={"size-2 rounded-full" + (currentSlide === idx ? " bg-accent" : "bg-gray-200")}></span>
                                         </button>
                                     )
                                 })}
